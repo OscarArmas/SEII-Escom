@@ -1,4 +1,4 @@
-e
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
@@ -169,7 +169,7 @@ i.fa{
 							<div class="col-lg-12">
 								<form id="login-form" action="" method="post" role="form" style="display: block;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Boleta" value="">
+										<input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="">
 									</div>
 									<div class="form-group">
 										<input type="text" name="curp" id="curp" tabindex="2" class="form-control" placeholder="CURP">

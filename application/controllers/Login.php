@@ -14,7 +14,7 @@ class Login extends CI_Controller {
 			$this->load->view('vlogin');
 		}
 		else{
-			redirect('dashboard');
+			redirect('welcome');
 		}
 		return;
 
@@ -25,22 +25,21 @@ class Login extends CI_Controller {
 			return;
 		}
 		$data = $this->input->post();
-    print_r($data)
-		if(isset($data['username'])&&isset($data['curp'])){
-			$username = $data['username'];
+		if(isset($data['boleta'])&&isset($data['curp'])){
+			$boleta = $data['boleta'];
 			$curp = $data['curp'];
-			$data = $this->mlogin->ingresar($username,$curp);
+			$data = $this->mlogin->ingresar($boleta,$curp);
 			if(!$data){
 				echo "Usuario o contraseña incorrectos";
 				return;
 			}
-			$name = $data["nombre"]." ".$data["appat"]." ".$data["apmat"];
+			$name = $data["Nombre"]." ".$data["AppPaterno"]." ".$data["AppMaterno"];
 			$this->session->set_userdata('user',(object)Array(
-				"id_usuario"	=> $data['id_usuario'],
-				"nombre" 		=> $data["nombre"],
-				"appat"  		=> $data["appat"],
-				"apmat"			=> $data["apmat"],
-				"nivel"  		=> $data["nivel_permiso"]
+				"id_usuario"	=> $data['Usuario_ID'],
+				"nombre" 		=> $data["Nombre"],
+				"appat"  		=> $data["AppPaterno"],
+				"apmat"			=> $data["AppMaterno"],
+				"nivel"  		=> $data["Nivel_permiso"]
 				));
 			echo "Bienvenido ".$name;
 			return;
@@ -50,9 +49,6 @@ class Login extends CI_Controller {
 			return;
 		}
 	}
-  public function test(){
-    echo 'HOLAAAAAAAAAAAAAAAAAAAAAAAA'
-  }
 	/*public function generarpass($pass=null){
 		if(!$pass){
 			echo "Mandame un parametro!";

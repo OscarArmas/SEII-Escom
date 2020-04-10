@@ -4,20 +4,20 @@
 */
 class Mlogin extends CI_Model
 {
-    public function ingresar($username=null,$curp=null){
-        if(!$username || !$curp)
+    public function ingresar($boleta=null,$curp=null){
+        if(!$boleta || !$curp)
             return Array();
-        $this->db->select('Usuario_ID,Nombre,AppMaterno, AppPaterno, Nivel_permiso');
-        $this->db->from('Usuarios');
-        $this->db->where('username',$username);
+        $this->db->select('Usuario_ID,Nombre,AppMaterno, AppPaterno, Nivel_permiso,Curp, Boleta');
+        $this->db->from('Usuario');
+        $this->db->where('Boleta',$boleta);
         $user = $this->db->get()->result_array();
         if(!$user)
             return Array();
         $user = $user[0];
-        $check = password_verify($curp,$user["password"]);
-        if(!$check)
+        $check = strcmp($curp,$user["Curp"]);
+        if($check != 0)
             return Array();
-        unset($user["password"]);
+        unset($user["Curp"]);
         return $user;
     }
     public function getall()
