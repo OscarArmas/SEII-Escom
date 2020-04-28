@@ -6,7 +6,7 @@ class Index extends CI_Controller
         $this->load->library('session');
         $usuario = $this->session->userdata("user");
         if($usuario){
-            redirect('Welcome');
+            redirect('Login');
         }
     }
 

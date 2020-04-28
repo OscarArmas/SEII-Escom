@@ -14,7 +14,7 @@ class Login extends CI_Controller {
 			$this->load->view('vlogin');
 		}
 		else{
-			redirect('welcome');
+			redirect('dashboard');
 		}
 		return;
 
