@@ -30,9 +30,12 @@ class Login extends CI_Controller {
 			$curp = $data['curp'];
 			$data = $this->mlogin->ingresar($boleta,$curp);
 			if(!$data){
-				echo "Usuario o contraseña incorrectos";
+				echo "CURP o Boleta no encontrados";
 				return;
 			}
+      if($data['Contraseña'] == NULL){
+        echo "INSERTA CONTRASEÑA";
+      }
 			$name = $data["Nombre"]." ".$data["AppPaterno"]." ".$data["AppMaterno"];
 			$this->session->set_userdata('user',(object)Array(
 				"id_usuario"	=> $data['Usuario_ID'],
