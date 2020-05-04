@@ -7,7 +7,7 @@ class Mlogin extends CI_Model
     public function ingresar($boleta=null,$curp=null){
         if(!$boleta || !$curp)
             return Array();
-        $this->db->select('Usuario_ID,Nombre,AppMaterno, AppPaterno, Nivel_permiso,Curp, Boleta');
+        $this->db->select('Usuario_ID,Nombre,AppMaterno, AppPaterno, Nivel_permiso,Curp, Boleta,Contraseña');
         $this->db->from('Usuario');
         $this->db->where('Boleta',$boleta);
         $user = $this->db->get()->result_array();
