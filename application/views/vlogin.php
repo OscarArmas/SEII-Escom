@@ -156,10 +156,10 @@ i.fa{
 						</div>
 						<div class="row">
 							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">Iniciar</a>
+								<a href="#" class="active" id="login-form-link">Activar cuenta</a>
 							</div>
 							<div class="col-xs-6">
-								<a href="#" id="register-form-link">Crear cuenta</a>
+								<a href="#" id="register-form-link">Iniciar Sesion</a>
 							</div>
 						</div>
 						<hr>
@@ -268,7 +268,7 @@ i.fa{
  		data: $(this).serialize(),
  		success:function(data){
  			alert(data);
- 			if(data!="Usuario o contraseña incorrectos"){
+ 			if(data!="Datos no encontrados."){
  				location.reload();
  			}
             }
