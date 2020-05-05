@@ -122,6 +122,7 @@ i.fa{
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/bootstrap/dist/css/Version3.3/bootstrap.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
@@ -146,7 +147,13 @@ i.fa{
 			<div class="col-md-6 col-md-offset-3">
 				<div class="panel panel-login">
 					<div class="panel-heading">
-            <img  src="<?php echo base_url('assets/escudoESCOM.png'); ?>"  class="img-responsive" alt="logo-de-ESCOM">
+            <div class="row">
+            <div class="col-s-12">
+              <h1>
+              <i class="fa fa-rocket fa-4x bg-primary"></i>
+              </h1>
+            </div>
+            </div>
 						<div class="row">
 						<div class="col-s-12">
 							<h1>
@@ -155,11 +162,8 @@ i.fa{
 						</div>
 						</div>
 						<div class="row">
-							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">Activar cuenta</a>
-							</div>
-							<div class="col-xs-6">
-								<a href="#" id="register-form-link">Iniciar Sesion</a>
+							<div class="col-3 mx-auto">
+								<a href="#" class="active" id="login-form-link">Registro</a>
 							</div>
 						</div>
 						<hr>
@@ -167,50 +171,32 @@ i.fa{
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="" method="post" role="form" style="display: block;">
+									<form id="register-form" action="" method="post" role="form" style="display: block;">
 									<div class="form-group">
-										<input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="">
+										<input type="text" name="nombre" id="nombre" tabindex="1" class="form-control" placeholder="Nombre" value="">
+									</div>
+                  <div class="form-group">
+                    <input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="">
+                  </div>
+									<div class="form-group">
+										<input type="text" name="appat" id="appat" tabindex="1" class="form-control" placeholder="Primer apellido" value="">
 									</div>
 									<div class="form-group">
-										<input type="text" name="curp" id="curp" tabindex="2" class="form-control" placeholder="CURP">
+										<input type="text" name="apmat" id="apmat" tabindex="1" class="form-control" placeholder="Segundo apellido" value="">
 									</div>
 									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Iniciar">
-											</div>
-										</div>
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
 									</div>
 									<div class="form-group">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="text-center">
-													<a  tabindex="5" class="forgot-password">Olvidaste tu contraseña?</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</form>
-								<form id="register-form" action="registrar" method="post" role="form" style="display: none;">
-									<div class="form-group">
-										<input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="">
+										<input type="password" name="password" id="regpassword" tabindex="2" class="form-control" placeholder="Password">
 									</div>
 									<div class="form-group">
-										<input type="text" name="contraseña" id="contraseña" tabindex="2" class="form-control" placeholder="Contraseña">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
 									</div>
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Iniciar">
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="text-center">
-													<a  tabindex="5" class="forgot-password">Olvidaste tu contraseña?</a>
-												</div>
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Registrar">
 											</div>
 										</div>
 									</div>
@@ -240,36 +226,15 @@ i.fa{
 		e.preventDefault();
 	});
 
-	$("#login-form").submit(function(e){
-		e.preventDefault();
-		//return;
- 		$.ajax({
- 		url: "login/checkRegister",
- 		type: "post",
- 		data: $(this).serialize(),
- 		success:function(data){
-			if (data == "1"){
-				alert("Ya Te has registrado antes.")
-			}
-			if(data == "0"){
-				window.location.replace("http://localhost/SEII-Escom/Preregister");
-			}
-			else{
-				alert(data);
-			}
-
-    }
- 		});
- 	})
  	$("#register-form").submit(function(e){
 		e.preventDefault();
  		$.ajax({
- 		url: "login/iniciar",
+ 		url: "preregister/fullregister",
  		type: "post",
  		data: $(this).serialize(),
  		success:function(data){
- 				location.reload();
-
+ 			alert("\n¡REGISTRO COMPLETADO!");
+      window.location.replace("http://localhost/SEII-Escom/Login");
             }
  		});
  	})
