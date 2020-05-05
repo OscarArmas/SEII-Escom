@@ -6,12 +6,13 @@ class Index extends CI_Controller
         $this->load->library('session');
         $usuario = $this->session->userdata("user");
         if($usuario){
-            redirect('Login');
+            redirect('Dashboard');
+        }
+        else{
+          redirect('Login');
         }
     }
 
-    public function index(){
-        redirect('Login');
-    }
+
 }
 ?>
