@@ -234,7 +234,7 @@ i.fa{
  		data: $(this).serialize(),
  		success:function(data){
  			alert("\n¡REGISTRO COMPLETADO!");
-      window.location.replace("http://localhost/SEII-Escom/Login");
+      window.location.replace("<?php echo base_url();?>Login");
             }
  		});
  	})

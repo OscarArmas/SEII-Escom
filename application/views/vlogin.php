@@ -252,7 +252,7 @@ i.fa{
 				alert("Ya Te has registrado antes.")
 			}
 			if(data == "0"){
-				window.location.replace("http://localhost/SEII-Escom/Preregister");
+				window.location.replace("<?php echo base_url();?>/Preregister");
 			}
 			else{
 				alert(data);
