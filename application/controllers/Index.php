@@ -12,6 +12,9 @@ class Index extends CI_Controller
           redirect('Login');
         }
     }
+    public function index(){
+
+    }
 
 
 }
