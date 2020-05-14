@@ -248,13 +248,15 @@ i.fa{
  		type: "post",
  		data: $(this).serialize(),
  		success:function(data){
+			if(data == "null"){
+				swal("Datos no encontrados","Revisa si tu Curp y Boleta son correctos","error");
+			}
 			if (data == "1"){
-				swal("Ya te has registrado antes");
+				swal("Cuenta Activada","Ya has activado tu cuenta anteriormente.","success");
 			}
 			if(data == "0"){
 				window.location.replace("<?php echo base_url();?>/Preregister");
 			}
-
 
     }
  		});
