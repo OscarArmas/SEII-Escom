@@ -249,14 +249,12 @@ i.fa{
  		data: $(this).serialize(),
  		success:function(data){
 			if (data == "1"){
-				alert("Ya Te has registrado antes.")
+				swal("Ya te has registrado antes");
 			}
 			if(data == "0"){
 				window.location.replace("<?php echo base_url();?>/Preregister");
 			}
-			else{
-				alert(data);
-			}
+
 
     }
  		});
@@ -268,6 +266,7 @@ i.fa{
  		type: "post",
  		data: $(this).serialize(),
  		success:function(data){
+
  				location.reload();
 
             }
@@ -276,5 +275,7 @@ i.fa{
  	});
 
 	</script>
+	<!-- SweetAlert-->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>
