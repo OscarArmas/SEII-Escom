@@ -66,6 +66,10 @@ class Login extends CI_Controller {
     $data = $this->input->post();
     $boleta = $data['boleta'];
     $data = $this->Mlogin->isFullRegister($boleta);
+    if (empty($data)){
+      echo "null";
+      return ;
+    }
     if($data[0]->Correo == NULL){
       echo "0";
       return  ;
