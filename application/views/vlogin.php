@@ -152,6 +152,9 @@ i.fa{
 							<h1>
 							<i class="fas fa-book-reader"></i>
 							</h1>
+							<h1>
+							<i class="fas fa-book-reader"></i>
+							</h1>
 						</div>
 						</div>
 						<div class="row">
