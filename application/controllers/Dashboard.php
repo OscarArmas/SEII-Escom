@@ -13,7 +13,7 @@ class Dashboard extends CI_Controller
      if(!$this->usuario){
           redirect('login');
       }
-      if($this->usuario->nivel==3)
+      if($this->usuario->nivel==2)
             redirect('Admin');
 
   }
