@@ -49,7 +49,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <br />
 
             <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <ul class="nav side-menu">
 
+                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Alumnos <span class="label label-success pull-right"></span></a></li>
+                </ul>
+              </div>
+
+            </div>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
@@ -162,22 +170,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Plain Page</h3>
-              </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div class="clearfix"></div>
 
