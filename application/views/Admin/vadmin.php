@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="menu_section">
                 <ul class="nav side-menu">
 
-                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Alumnos <span class="label label-success pull-right"></span></a></li>
+                  <li><a href="<?php echo site_url('Admin/AlumnosView') ?>"><i class="fa fa-laptop"></i> Alumnos <span class="label label-success pull-right"></span></a></li>
                 </ul>
               </div>
 

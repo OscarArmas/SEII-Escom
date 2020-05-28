@@ -23,4 +23,13 @@ class Admin extends CI_Controller {
 		$this->load->view('Admin/vadmin');
 	}
 
+  public function AlumnosView(){
+    $this->load->view('Admin/vadminAlumno');
+
+  }
+
+
+
+
+
 }
