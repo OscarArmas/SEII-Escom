@@ -195,39 +195,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                       <tbody>
 
+                        <?php foreach($Alumnos as $key=>$values): ?>
+                          <?php $nombre_completo = $values->Nombre .' '. $values->AppPaterno .' '. $values->AppMaterno; ?>
                         <tr>
-                          <td>Lael Greer</td>
-                          <td>Systems Administrator</td>
-                          <td>London</td>
-                        </tr>
-                        <tr>
-                          <td>Jonas Alexander</td>
-                          <td>Developer</td>
-                          <td>San Francisco</td>
-                        </tr>
-                        <tr>
-                          <td>Shad Decker</td>
-                          <td>Regional Director</td>
-                          <td>Edinburgh</td>
 
-                        </tr>
-                        <tr>
-                          <td>Michael Bruce</td>
-                          <td>Javascript Developer</td>
-                          <td>Singapore</td>
-
-                        </tr>
-                        <tr>
-                          <td>Donna Snider</td>
-                          <td>Customer Support</td>
+                          <td><?php echo $values->Boleta; ?></td>
+                          <td><?php echo $nombre_completo; ?></td>
                           <td>
-                                <i class="fa fa-trash x_" data-eliminar="2020630001" style="color:red;"></i>&nbsp;
-                                <i class="fa fa-eye x_" data-ver="2020630001" style="color:#1cacde;"></i>&nbsp;
-                                <i class="fa fa-edit x_ " data-editar="2020630001" style="color:#35a94a;"></i>&nbsp;
-                                <i class="fa fa-file-pdf-o x_" data-pdf="2020630001"style="color:red;"></i>&nbsp;
+                                <i class="fa fa-trash x_" data-id="2020630001" style="color:red;"></i>&nbsp;
+                                <i class="fa fa-eye x_" data-id="2020630001" style="color:#1cacde;"></i>&nbsp;
+                                <i class="fa fa-edit x_ " data-id="2020630001" style="color:#35a94a;"></i>&nbsp;
+                                <i class="fa fa-file-pdf-o x_" data-id="2020630001"style="color:red;"></i>&nbsp;
                           </td>
 
                         </tr>
+                        <?php endforeach; ?>
                       </tbody>
                     </table>
                   </div>
