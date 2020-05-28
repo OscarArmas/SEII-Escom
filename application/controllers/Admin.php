@@ -16,6 +16,7 @@ class Admin extends CI_Controller {
 		#$this->load->model('mescuela');
 		#$this->load->model('mevento');
 		#$this->load->library('form_validation');
+    $this->load->model('Madmin');
   	}
 
 	public function index(){
@@ -24,7 +25,9 @@ class Admin extends CI_Controller {
 	}
 
   public function AlumnosView(){
-    $this->load->view('Admin/vadminAlumno');
+    $lista_json_alumnos = $this->Madmin->get_alumnos();
+    $data['Alumnos'] = json_decode($lista_json_alumnos);
+    $this->load->view('Admin/vadminAlumno', $data);
 
   }
 
