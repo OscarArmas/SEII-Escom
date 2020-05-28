@@ -221,10 +221,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <td>Donna Snider</td>
                           <td>Customer Support</td>
                           <td>
-                                <i class="fa fa-eye" data-ver="2020630001"></i>&nbsp;
-                                <i class="fa fa-edit" data-editar="2020630001"></i>&nbsp;
-                                <i class="fa fa-trash" data-eliminar="2020630001"></i>&nbsp;
-                                <i class="fa fa-file-pdf-o" data-pdf="2020630001"></i>&nbsp;
+                                <i class="fa fa-trash x_" data-eliminar="2020630001" style="color:red;"></i>&nbsp;
+                                <i class="fa fa-eye x_" data-ver="2020630001" style="color:#1cacde;"></i>&nbsp;
+                                <i class="fa fa-edit x_ " data-editar="2020630001" style="color:#35a94a;"></i>&nbsp;
+                                <i class="fa fa-file-pdf-o x_" data-pdf="2020630001"style="color:red;"></i>&nbsp;
                           </td>
 
                         </tr>
@@ -281,7 +281,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?=base_url()?>assets/vendors/jszip/dist/jszip.min.js"></script>
     <script src="<?=base_url()?>assets/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="<?=base_url()?>assets/vendors/pdfmake/build/vfs_fonts.js"></script>
-
+    <style>
+      .x_{
+        font-size:20px;
+        cursor: pointer;
+      }
+    </style>
 
   </body>
 </html>
