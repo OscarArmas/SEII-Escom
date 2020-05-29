@@ -272,18 +272,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   <script>
   $( "body" ).on( "click", ".eliminar", function() {
+
+
+
     var boleta = $(this).attr("data-eliminar");
     //buscamos el TR mas cercano al click, osea el que hicimos click
     var tr = $(this).closest('tr');
-    console.log(tr);
-    $.ajax({
-    url: "Delete_user",
-    type: "post",
-    data: {boleta:boleta},
-    success:function(data){
-      tr.hide();
-            }
+
+    //Avisar al Admin con SWEETALERT
+    swal({
+      title: "Seguro que quieres eliminar a este usuario?",
+      text: "Sera borrado de todo el sistema",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+        url: "Delete_user",
+        type: "post",
+        data: {boleta:boleta},
+        success:function(data){
+          tr.hide();
+                }
+        });
+      }
     });
+
+
   });
 
 
@@ -317,6 +334,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
   </script>
-
+  <!-- SweetAlert-->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </body>
 </html>
