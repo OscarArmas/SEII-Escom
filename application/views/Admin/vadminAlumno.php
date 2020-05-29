@@ -186,9 +186,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <table id="datatable" class="table table-striped" style="width:100%">
                       <thead>
                         <tr>
-                          <th>Boleta</th>
-                          <th>Nombre</th>
-                          <th>Acciones</th>
+                          <th style="font-size:15px;" >Boleta</th>
+                          <th style="font-size:15px;" >Nombre</th>
+                          <th style="font-size:15px;" >Acciones</th>
                         </tr>
                       </thead>
 
@@ -199,8 +199,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <?php $nombre_completo = $values->Nombre .' '. $values->AppPaterno .' '. $values->AppMaterno; ?>
                         <tr>
 
-                          <td><?php echo $values->Boleta; ?></td>
-                          <td><?php echo $nombre_completo; ?></td>
+                          <td style="font-size:15px;"><?php echo $values->Boleta; ?></td>
+                          <td style="font-size:15px;"><?php echo $nombre_completo; ?></td>
                           <td>
                                 <i class="fa fa-trash _iconAction eliminar" data-eliminar=<?php echo $values->Boleta; ?> style="color:red;"></i>&nbsp;
                                 <i class="fa fa-eye _iconAction verinfo" data-verinfo=<?php echo $values->Boleta; ?> style="color:#1cacde;"></i>&nbsp;
@@ -265,7 +265,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?=base_url()?>assets/vendors/pdfmake/build/vfs_fonts.js"></script>
     <style>
       ._iconAction{
-        font-size:20px;
+        font-size:30px;
         cursor: pointer;
       }
     </style>
@@ -278,7 +278,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     var boleta = $(this).attr("data-eliminar");
     //buscamos el TR mas cercano al click, osea el que hicimos click
     var tr = $(this).closest('tr');
-
+    tr.css({ 'background-color' : '  #e7e3d2  ' });
     //Avisar al Admin con SWEETALERT
     swal({
       title: "Seguro que quieres eliminar a este usuario?",
@@ -294,9 +294,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         type: "post",
         data: {boleta:boleta},
         success:function(data){
+
           tr.hide();
                 }
         });
+      }else{
+        tr.css({ 'background-color' : 'white' });
       }
     });
 
