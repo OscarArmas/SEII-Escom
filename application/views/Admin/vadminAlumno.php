@@ -202,10 +202,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <td><?php echo $values->Boleta; ?></td>
                           <td><?php echo $nombre_completo; ?></td>
                           <td>
-                                <i class="fa fa-trash _iconAction eliminar" data-eliminar=<?php echo $values->Usuario_ID; ?> style="color:red;"></i>&nbsp;
-                                <i class="fa fa-eye _iconAction verinfo" data-verinfo=<?php echo $values->Usuario_ID; ?> style="color:#1cacde;"></i>&nbsp;
-                                <i class="fa fa-edit _iconAction editar" data-editar=<?php echo $values->Usuario_ID; ?> style="color:#35a94a;"></i>&nbsp;
-                                <i class="fa fa-file-pdf-o _iconAction pdf" data-pdf=<?php echo $values->Usuario_ID; ?> style="color:red;"></i>&nbsp;
+                                <i class="fa fa-trash _iconAction eliminar" data-eliminar=<?php echo $values->Boleta; ?> style="color:red;"></i>&nbsp;
+                                <i class="fa fa-eye _iconAction verinfo" data-verinfo=<?php echo $values->Boleta; ?> style="color:#1cacde;"></i>&nbsp;
+                                <i class="fa fa-edit _iconAction editar" data-editar=<?php echo $values->Boleta; ?> style="color:#35a94a;"></i>&nbsp;
+                                <i class="fa fa-file-pdf-o _iconAction pdf" data-pdf=<?php echo $values->Boleta; ?> style="color:red;"></i>&nbsp;
                           </td>
 
                         </tr>
@@ -272,23 +272,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   <script>
   $( "body" ).on( "click", ".eliminar", function() {
-    alert('eliminar');
+    boleta = $(this).attr("data-eliminar");
+    alert(boleta);
   });
 
 
 
   $( "body" ).on( "click", ".verinfo", function() {
-    alert('verinfo');
+    boleta = $(this).attr("data-verinfo");
+    alert(boleta);
   });
 
 
   $( "body" ).on( "click", ".editar", function() {
-    alert('editar');
+    boleta = $(this).attr("data-editar");
+    alert(boleta);
   });
 
 
   $( "body" ).on( "click", ".pdf", function() {
-    alert('pdf');
+    boleta = $(this).attr("data-pdf");
+    alert(boleta);
   });
 
 
