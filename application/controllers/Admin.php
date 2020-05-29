@@ -31,6 +31,18 @@ class Admin extends CI_Controller {
 
   }
 
+  public function Delete_user(){
+    if(!$this->input->post()){
+      echo " ¡Error! ";
+      return;
+    }
+    $data = $this->input->post();
+    print_r($data);
+    return;
+    #$id_delete = $this->Madmin->delete_user();
+
+  }
+
 
 
 

@@ -272,8 +272,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   <script>
   $( "body" ).on( "click", ".eliminar", function() {
-    boleta = $(this).attr("data-eliminar");
-    alert(boleta);
+    var boleta = $(this).attr("data-eliminar");
+    //buscamos el TR mas cercano al click, osea el que hicimos click
+    var tr = $(this).closest('tr');
+    console.log(tr);
+    $.ajax({
+    url: "Delete_user",
+    type: "post",
+    data: {boleta:boleta},
+    success:function(data){
+      tr.hide();
+            }
+    });
   });
 
 
