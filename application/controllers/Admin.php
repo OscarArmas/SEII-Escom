@@ -37,9 +37,7 @@ class Admin extends CI_Controller {
       return;
     }
     $data = $this->input->post();
-    print_r($data);
-    return;
-    #$id_delete = $this->Madmin->delete_user();
+    $id_delete = $this->Madmin->delete_user($data['boleta']);
 
   }
 
