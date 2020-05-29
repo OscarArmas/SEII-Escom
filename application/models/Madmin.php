@@ -11,6 +11,12 @@ class Madmin extends CI_Model
     return json_encode($sql);
   }
 
+  public function delete_user($Boleta){
+
+    return $this->db->delete('Usuario', array('Boleta' => $Boleta));
+
+  }
+
 
 
 
