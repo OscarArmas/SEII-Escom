@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <title>SEII-Escom | </title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap -->
     <link href="<?=base_url()?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -202,10 +202,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <td><?php echo $values->Boleta; ?></td>
                           <td><?php echo $nombre_completo; ?></td>
                           <td>
-                                <i class="fa fa-trash x_" data-id="2020630001" style="color:red;"></i>&nbsp;
-                                <i class="fa fa-eye x_" data-id="2020630001" style="color:#1cacde;"></i>&nbsp;
-                                <i class="fa fa-edit x_ " data-id="2020630001" style="color:#35a94a;"></i>&nbsp;
-                                <i class="fa fa-file-pdf-o x_" data-id="2020630001"style="color:red;"></i>&nbsp;
+                                <i class="fa fa-trash _iconAction eliminar" data-eliminar=<?php echo $values->Usuario_ID; ?> style="color:red;"></i>&nbsp;
+                                <i class="fa fa-eye _iconAction verinfo" data-verinfo=<?php echo $values->Usuario_ID; ?> style="color:#1cacde;"></i>&nbsp;
+                                <i class="fa fa-edit _iconAction editar" data-editar=<?php echo $values->Usuario_ID; ?> style="color:#35a94a;"></i>&nbsp;
+                                <i class="fa fa-file-pdf-o _iconAction pdf" data-pdf=<?php echo $values->Usuario_ID; ?> style="color:red;"></i>&nbsp;
                           </td>
 
                         </tr>
@@ -264,11 +264,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?=base_url()?>assets/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="<?=base_url()?>assets/vendors/pdfmake/build/vfs_fonts.js"></script>
     <style>
-      .x_{
+      ._iconAction{
         font-size:20px;
         cursor: pointer;
       }
     </style>
+
+  <script>
+  $( "body" ).on( "click", ".eliminar", function() {
+    alert('eliminar');
+  });
+
+
+
+  $( "body" ).on( "click", ".verinfo", function() {
+    alert('verinfo');
+  });
+
+
+  $( "body" ).on( "click", ".editar", function() {
+    alert('editar');
+  });
+
+
+  $( "body" ).on( "click", ".pdf", function() {
+    alert('pdf');
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
 
   </body>
 </html>
