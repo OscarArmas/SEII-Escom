@@ -181,9 +181,78 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 
             <div class="clearfix"></div>
+            <p class="DVH">DVH </p>
+<div id="form">
+    <form action="#" id="buscador">
+        <div class="row">
+                <div class="three columns">
+                    <label for="carrera">Carrera</label>
+                    <select class="u-full-width" id="carrera">
+                        <option value="">Seleccione</option>
+                        <option value="1">Sistemas Computacionales</option>
+                        <option value="2">Ciencia de datos</option>
+                        <option value="3">Inteligencial rtificial</option>                        
+                    </select>
+                </div>
+                <div class="three columns">
+                    <label for="Nivel">Nivel</label>
+                    <select class="u-full-width" id="nivel">
+                        <option value="">Seleccione</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>                      
+                    </select>
+                </div>
+            <div class="three columns">
+                <label for="UA">Unidad de aprendizaje</label>
+                <select class="u-full-width" id="ua">
+                        <option id="op" value="">Seleccione</option>
+                        <option value="DSD">DSD</option>     
+                        
+                </select>
+            </div>
+            <div class="three columns">
+                <label for="Turno">Turno</label>
+                <select class="u-full-width" id="turno">
+                        <option value="">Seleccione</option>
+                        <option value="M">Matutino</option>
+                        <option value="V">Vespertino</option>                       
+                </select>
+            </div>
+            <div class="three columns">
+                <label for="Turno">Recurse</label>
+                <select class="u-full-width" id="recurse">
+                        <option value="">Seleccione</option>
+                        <option value="1">SI</option>
+                        <option value="0">No</option>                       
+                </select>
+            </div>
+            <div class="three columns">
+              <a href="#" class="boton" id="AgregarUA">Agregar</a>
+            </div>
+    </form>
+</div>
+<p>Termina form</p>
+<div id="avisos">
+  <h4  id="error"></h4>
+</div>
+<p>Termina avisos</p>
+<div class="three columns">
+              <a href="#" class="boton" id="Confirmar">Confirmar</a>
+            </div>
+<div id="resumen" class="Hola">
+<ul id="lista"></ul>
+  </div>
+  <div id="contador" >
+<ul id="prueba"></ul>
+  </div>
+
 
             <div class="row">
               <div class="col-md-12 col-sm-12  ">
+
               </div>
             </div>
           </div>
