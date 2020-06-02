@@ -6,6 +6,7 @@ const carrera = document.getElementById("carrera");
 const nivel = document.getElementById("nivel");
 const ua = document.getElementById("ua");
 const confirmar = document.getElementById("Confirmar");
+let nodos =0;
 let valor0 = 0;
 let valor1 = 0;               
 let DBmat = { };
@@ -94,11 +95,14 @@ confirmar.addEventListener("click",function(e){
            
 });
 //LLenar Select
-form.addEventListener("change",function(e){
+nivel.addEventListener("change",function(e){
      e.preventDefault();
-     
+    
+     valor1 = nivel.value;
+
      if (valor0 !="" && valor1 !="")
      {
+          BorrarOption();
 
               for(let i = 0; i<DBmat.length;i++){
                    if(DBmat[i][2]==valor1)
@@ -112,16 +116,15 @@ form.addEventListener("change",function(e){
                      }
         
                    }
+                   nodos = ua.childNodes.length;   
+
+
      }
 });
 
 //carrera. value
 carrera.addEventListener("change",function(e){
      valor0 = carrera.value;
-});
-//nivel value
-nivel.addEventListener("change",function(e){
-     valor1 = nivel.value;
 });
 //eliminar listados
 listado.addEventListener("click",function(e){
@@ -172,6 +175,17 @@ formulario.addEventListener('click',function(e){
        }
      }
 });
+//Borrar options
+function BorrarOption(){
+
+          for(let i =1; i<nodos;i++)
+               {                
+                      ua.lastChild.remove();
+
+               }
+               
+
+}
 //Base de datos
 //Obtener materias
 function showCustomer(str) {

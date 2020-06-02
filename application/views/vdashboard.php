@@ -209,8 +209,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <label for="UA">Unidad de aprendizaje</label>
                 <select class="u-full-width" id="ua">
                         <option id="op" value="">Seleccione</option>
-                        <option value="DSD">DSD</option>     
-                        
                 </select>
             </div>
             <div class="three columns">
@@ -281,5 +279,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Custom Theme Scripts -->
     <script src="<?=base_url()?>assets/build/js/custom.min.js"></script>
+    <script src="<?=base_url()?>assets/build/js/APP.js"></script>
   </body>
 </html>
