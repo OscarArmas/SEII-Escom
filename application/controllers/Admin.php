@@ -41,6 +41,13 @@ class Admin extends CI_Controller {
 
   }
 
+  public function Edit_info(){
+    $this->load->view('Admin/vformedit');
+
+
+
+  }
+
 
 
 
