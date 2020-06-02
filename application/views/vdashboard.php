@@ -21,6 +21,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Custom Theme Style -->
     <link href="<?=base_url()?>assets/build/css/custom.min.css" rel="stylesheet">
+    <style>
+      h4 {
+        background-color: white;
+        color: darkred;
+        padding: 5px 10px;
+      }
+.boton {
+    background-color: darkgray;
+    border-radius: 50%;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: lightblue;
+    font-weight: bold;
+    
+}
+.borrar {
+    background-color: red;
+    border-radius: 50%;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+    </style>
   </head>
 
   <body class="nav-md">
@@ -209,8 +233,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <label for="UA">Unidad de aprendizaje</label>
                 <select class="u-full-width" id="ua">
                         <option id="op" value="">Seleccione</option>
-                        <option value="DSD">DSD</option>     
-                        
                 </select>
             </div>
             <div class="three columns">
@@ -234,14 +256,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
     </form>
 </div>
-<p>Termina form</p>
 <div id="avisos">
   <h4  id="error"></h4>
 </div>
-<p>Termina avisos</p>
+<br>
+
 <div class="three columns">
               <a href="#" class="boton" id="Confirmar">Confirmar</a>
             </div>
+  <br>
 <div id="resumen" class="Hola">
 <ul id="lista"></ul>
   </div>
@@ -269,7 +292,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- /footer content -->
       </div>
     </div>
-
+<style>src </style>
     <!-- jQuery -->
     <script src="<?=base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -281,5 +304,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Custom Theme Scripts -->
     <script src="<?=base_url()?>assets/build/js/custom.min.js"></script>
+    <script src="<?=base_url()?>assets/build/js/APP.js"></script>
   </body>
 </html>

@@ -13,5 +13,5 @@ $stmt->store_result();
 $stmt->bind_result($Res,$Res1,$Res2);
 $stmt->fetch();
 $stmt->close();
-echo "Insert Correct".{$Res;
+echo "Insert Correct";
 ?>
