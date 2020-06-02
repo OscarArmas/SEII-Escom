@@ -67,7 +67,7 @@ class Interfaz{
           const li = document.createElement('li');
           // Insertar la materia
           li.innerHTML = `
-               ${nivel} ${unidad} ${turno} ${recurse}<a href="#" class="borrar">x</a>
+               ${nivel} - ${unidad} - ${turno} - ${recurse} - <a href="#" class="borrar">x</a><br><br>
           `; 
           // Insertar al HTML
           UAListado.appendChild(li);
@@ -79,12 +79,12 @@ class Interfaz{
 confirmar.addEventListener("click",function(e){
    e.preventDefault();
    ui= new Interfaz();
-   if( Materia. length == 0)
+   if( Materias. length == 0 || Materias.length == undefined)
    {
-          ui.Mensaje3;
-   } else if(Materia.length != 0)
+          ui.Mensaje3();
+   } else if(Materias.length != 0)
             {
-               Object.values( Materia ).forEach(function(mat) {
+            Materias.forEach(function(mat) {
                 const K = mat.unidad;
                 const J = mat.nivel;//Necesito id del usuario           
                 const R = mat.turno;
