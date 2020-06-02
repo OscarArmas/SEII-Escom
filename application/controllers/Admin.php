@@ -41,12 +41,33 @@ class Admin extends CI_Controller {
 
   }
 
-  public function Edit_info(){
-    $this->load->view('Admin/vformedit');
+  public function Edit_info($boleta){
+    if($boleta){
+    $info_user = $this->Madmin->get_user($boleta);
+    $data['Alumno']= json_decode($info_user);
+    $this->load->view('Admin/vformedit', $data);
+    return;
+  }
+}
 
+  public function update_info(){
+    if(!$this->input->post()){
+      echo " ¡Error! ";
+      return;
+    }
+      $data = $this->input->post();
+
+       $verify = $this->Madmin->update_user($data);
+       echo $verify;
+
+       return;
 
 
   }
+
+
+
+
 
 
 

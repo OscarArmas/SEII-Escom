@@ -316,7 +316,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   $( "body" ).on( "click", ".editar", function() {
     boleta = $(this).attr("data-editar");
-    alert(boleta);
+    var boleta = $(this).attr("data-editar");
+    //buscamos el TR mas cercano al click, osea el que hicimos click
+    var tr = $(this).closest('tr');
+    tr.css({ 'background-color' : '  #e7e3d2  ' });
+    window.location.href = "<?php echo base_url();?>/Admin/Edit_info/"+boleta;
   });
 
 

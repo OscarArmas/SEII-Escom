@@ -178,7 +178,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Editar usuario<small>Alumno: </small></h2>
+                    <h2>Editar usuario<small>Alumno: <?php echo $Alumno[0]->Boleta; ?></small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -198,20 +198,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" onsubmit="return false">
+
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Boleta <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                          <input type="text" id="boleta" name="boleta" required="required" class="form-control " value=<?php echo $Alumno[0]->Boleta; ?> readonly="readonly">
+                        </div>
+                      </div>
 
                       <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nombre <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                          <input type="text" id="first-name" required="required" class="form-control ">
+                          <input type="text" id="Nombre" name="Nombre" required="required" class="form-control " value=<?php echo $Alumno[0]->Nombre; ?>>
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Primer apellido <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                          <input type="text" id="last-name" name="last-name" required="required" class="form-control">
+                          <input type="text" id="AppPaterno" name="AppPaterno" required="required" class="form-control" value=<?php echo $Alumno[0]->AppPaterno; ?>>
                         </div>
                       </div>
 
@@ -219,7 +227,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Segundo apellido <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                          <input type="text" id="last-name" name="last-name" required="required" class="form-control">
+                          <input type="text" id="AppMaterno" name="AppMaterno" required="required" class="form-control" value=<?php echo $Alumno[0]->AppMaterno; ?>>
                         </div>
                       </div>
 
@@ -227,7 +235,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Email<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                          <input type="text" id="last-name" name="last-name" required="required" class="form-control">
+                          <input type="text" id="Correo" name="Correo" required="required" class="form-control" value=<?php echo $Alumno[0]->Correo; ?>>
                         </div>
                       </div>
 
@@ -236,7 +244,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <div class="item form-group">
                         <div class="col-md-6 col-sm-6 offset-md-3">
                           <button class="btn btn-primary" type="button">Cancelar</button>
-                          <button type="submit" class="btn btn-success">Actualizar</button>
+                          <button id= "submitbutton" type="submit" class="btn btn-success">Actualizar</button>
                         </div>
                       </div>
 
@@ -309,5 +317,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   <!-- SweetAlert-->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script type="text/javascript">
+  // this is the id of the form
+  $("#demo-form2").submit(function(e) {
+
+      e.preventDefault(); // avoid to execute the actual submit of the form.
+
+      var form = $(this);
+
+      $.ajax({
+             type: "POST",
+             url: "<?php echo base_url();?>/Admin/update_info",
+             data: form.serialize(), // serializes the form's elements.
+             success: function(data)
+             {
+               if (data == 1){
+
+                 swal("Usuario actualizado")
+                 .then((value) => {
+                   window.location.replace("<?php echo base_url();?>Admin/AlumnosView");
+                 });
+                 
+               }
+             }
+           });
+
+
+  });
+
+</script>
   </body>
 </html>
