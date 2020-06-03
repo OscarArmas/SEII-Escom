@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     text-decoration: none;
     color: lightblue;
     font-weight: bold;
-    
+
 }
 .borrar {
     background-color: red;
@@ -66,6 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="profile_info">
                 <span>Bienvenido,</span>
                 <h2><?php echo $nombre?></h2>
+                <h2><?php echo $id_usuario?></h2>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -215,7 +216,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <option value="">Seleccione</option>
                         <option value="1">Sistemas Computacionales</option>
                         <option value="2">Ciencia de datos</option>
-                        <option value="3">Inteligencial rtificial</option>                        
+                        <option value="3">Inteligencial rtificial</option>
                     </select>
                 </div>
                 <div class="three columns">
@@ -226,7 +227,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
-                        <option value="5">5</option>                      
+                        <option value="5">5</option>
                     </select>
                 </div>
             <div class="three columns">
@@ -240,7 +241,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <select class="u-full-width" id="turno">
                         <option value="">Seleccione</option>
                         <option value="M">Matutino</option>
-                        <option value="V">Vespertino</option>                       
+                        <option value="V">Vespertino</option>
                 </select>
             </div>
             <div class="three columns">
@@ -248,7 +249,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <select class="u-full-width" id="recurse">
                         <option value="">Seleccione</option>
                         <option value="1">SI</option>
-                        <option value="0">No</option>                       
+                        <option value="0">No</option>
                 </select>
             </div>
             <div class="three columns">
