@@ -123,6 +123,8 @@ i.fa{
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/bootstrap/dist/css/Version3.3/bootstrap.min.css">
   <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/font-awesome/css/font-awesome.min.css">
+<!-- Validetta-->
+	<link href="<?=base_url()?>assets/validetta/validetta.css" rel="stylesheet" type="text/css" media="screen" >
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
@@ -173,25 +175,25 @@ i.fa{
 							<div class="col-lg-12">
 									<form id="register-form" action="" method="post" role="form" style="display: block;">
 									<div class="form-group">
-										<input type="text" name="nombre" id="nombre" tabindex="1" class="form-control" placeholder="Nombre" value="">
+										<input type="text" name="nombre" id="nombre" tabindex="1" class="form-control" placeholder="Nombre" value="" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
                   <div class="form-group">
-                    <input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="">
+                    <input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="" data-validetta="number,required" data-vd-message-required="Campo requerido!">
                   </div>
 									<div class="form-group">
-										<input type="text" name="appat" id="appat" tabindex="1" class="form-control" placeholder="Primer apellido" value="">
+										<input type="text" name="appat" id="appat" tabindex="1" class="form-control" placeholder="Primer apellido" value="" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
-										<input type="text" name="apmat" id="apmat" tabindex="1" class="form-control" placeholder="Segundo apellido" value="">
+										<input type="text" name="apmat" id="apmat" tabindex="1" class="form-control" placeholder="Segundo apellido" value="" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
-										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" data-validetta="email" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="regpassword" tabindex="2" class="form-control" placeholder="Password">
+										<input type="password" name="password" id="regpassword" tabindex="2" class="form-control" placeholder="Contraseña" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
-										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirmar Contraseña" data-validetta="required" data-vd-message-required="Campo requerido!" >
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -226,20 +228,40 @@ i.fa{
 		e.preventDefault();
 	});
 
- 	$("#register-form").submit(function(e){
-		e.preventDefault();
- 		$.ajax({
- 		url: "preregister/fullregister",
- 		type: "post",
- 		data: $(this).serialize(),
- 		success:function(data){
- 			alert("\n¡REGISTRO COMPLETADO!");
-      window.location.replace("<?php echo base_url();?>Login");
-            }
- 		});
- 	})
+
+	$('#register-form').validetta({
+	  onValid : function( event ) {
+	    event.preventDefault(); // Will prevent the submission of the form
+		 		$.ajax({
+		 		url: "preregister/fullregister",
+		 		type: "post",
+		 		data: $(this).serialize()
+		 		})
+				.done( function( data ){
+					swal("Datos Actualizados!","¡Ya puede iniciar sesion!","success")
+					.then((value) => {
+						window.location.replace("<?php echo base_url();?>Login");
+					});
+
+            })
+            .fail( function( jqXHR, textStatus ){
+                console.log(textStatus+':'+jqXHR.status+' : '+jqXHR.statusText);
+            })
+            .always( function( result ){ console.log('Request done !!');
+        });
+
+	  }
+
+	});
+
+
  	});
 
 	</script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="<?=base_url()?>assets/validetta/validetta.js"></script>
+<!-- SweetAlert-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>

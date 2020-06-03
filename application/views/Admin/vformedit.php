@@ -332,12 +332,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              success: function(data)
              {
                if (data == 1){
-
                  swal("Usuario actualizado")
                  .then((value) => {
                    window.location.replace("<?php echo base_url();?>Admin/AlumnosView");
                  });
-                 
                }
              }
            });
