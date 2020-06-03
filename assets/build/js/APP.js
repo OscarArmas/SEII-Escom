@@ -6,12 +6,17 @@ const carrera = document.getElementById("carrera");
 const nivel = document.getElementById("nivel");
 const ua = document.getElementById("ua");
 const confirmar = document.getElementById("Confirmar");
+const usu = parseInt(document.getElementById("UID").innerHTML);
+let ID= 0 ;
+IDMaterias();
 let nodos =0;
 let valor0 = 0;
 let valor1 = 0;               
 let DBmat = { };
 let Materias = [ ];
 let Materia={ };
+let Datos = [ ];
+
  showCustomer("25");
 //PruebaJson();
 //Clases
@@ -59,6 +64,14 @@ class Interfaz{
              mensaje.innerHTML='';
           },3000);
      };
+     Mensaje4()
+     {
+          const avisos = document.getElementById('avisos');
+            const mensaje = document.getElementById("error"); 
+            mensaje.innerHTML = `Registro confirmado`;
+          
+          
+     };
 //agregar valores listado
      agregarListado(nivel, unidad, turno,recurse)
       {
@@ -85,12 +98,24 @@ confirmar.addEventListener("click",function(e){
    } else if(Materias.length != 0)
             {
             Materias.forEach(function(mat) {
+               IDMaterias();
                 const K = mat.unidad;
-                const J = mat.nivel;//Necesito id del usuario           
+                const J = mat.nivel;
                 const R = mat.turno;
                 const V = mat.recurse;
-                    InsertDB(K,J,R,V);
+                ID = ID +1; 
+                Datos.push(ID);               
+                Datos.push(K);
+                Datos.push(usu);
+                Datos.push(J);                
+                Datos.push(V);
+                Datos.push(R);
+                console.log(Datos);
+                    InsertDB(Datos);
+                    Datos=[];
                 });
+                 BorrarLi();
+                ui.Mensaje4();
                }
            
 });
@@ -186,7 +211,41 @@ function BorrarOption(){
                
 
 }
+//Borrar li
+function BorrarLi(){
+
+     const UAListado = document.getElementById('lista');
+     for(let i =1; i<nodos;i++)
+          {                
+                 UAListado.lastChild.remove();
+
+          }
+          
+
+}
 //Base de datos
+//ID Materas_Alumnos
+function IDMaterias() {
+     var xhr;
+    
+     //Crear el objeto 
+     xhr = new XMLHttpRequest();
+     //abrir una conexion
+     xhr.open("GET", "assets/build/js/prueba3.php?", true);
+     //Una vez que carga
+     //onreadystatechange forma pasada
+     //onload forma nueva
+     xhr.onreadystatechange= function()
+      {
+          if (this.readyState == 4 && this.status == 200)
+           {
+                //this.responsetext contiene la informacion
+            ID = parseInt(this.responseText);
+          }
+      }
+     //Enciar el request
+     xhr.send();
+   }
 //Obtener materias
 function showCustomer(str) {
      var xhr;
@@ -215,13 +274,13 @@ function showCustomer(str) {
      //Enciar el request
      xhr.send();
    }
-   //Inser DB
-   function InsertDB(K,J,R,V) {
+   //Insert DB
+   function InsertDB(Datos) {
      var xhr;
      //Crear el objeto 
      xhr = new XMLHttpRequest();
      //abrir una conexion
-     xhr.open("GET", "assets/build/js/Prueba2.php?K= "+K+" J= "+J+" R= "+R+" V= "+V, true);
+     xhr.open("GET", "assets/build/js/Prueba2.php?datos= "+Datos, true);
      //Una vez que carga
      //onreadystatechange forma pasada
      //onload forma nueva

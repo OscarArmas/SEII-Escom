@@ -1,17 +1,24 @@
 <?php
-$mysqli = new mysqli("localhost", "root", "2016630398", "escuela");
-if($mysqli->connect_error) {
-  exit('Could not connect');
+$datos  = explode(",",$_GET['datos']);
+$servername = "localhost";
+$username = "root";
+$password = "2016630398";
+$dbname = "escuela";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO `alumno_materias`(`Materia_id`, `Usuario_id`, `Turno`, `Recurse`) VALUES (?,?,?,?)";
+$sql = "INSERT INTO `Alumno_Materias`(`Alumno_Materias_ID`, `Materia_id`, `Usuario_id`, `Ciclo_escolar`, `Recurse`, `Turno`) VALUES (".$datos[0].",".$datos[1].",".$datos[2].",".$datos[3].",".$datos[4].",".$datos[5].") ";
 
-$stmt = $mysqli->prepare($sql);
-$stmt->bind_param("iisi", $_GET['K'], $_GET['J'], $_GET['R'], $_GET['V']);
-$stmt->execute();
-$stmt->store_result();
-$stmt->bind_result($Res,$Res1,$Res2);
-$stmt->fetch();
-$stmt->close();
-echo "Insert Correct";
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
 ?>

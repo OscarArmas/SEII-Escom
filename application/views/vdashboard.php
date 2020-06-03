@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="profile_info">
                 <span>Bienvenido,</span>
                 <h2><?php echo $nombre?></h2>
-                <h2><?php echo $id_usuario?></h2>
+                <h2 id="UID"><?php echo $id_usuario?></h2>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -240,8 +240,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <label for="Turno">Turno</label>
                 <select class="u-full-width" id="turno">
                         <option value="">Seleccione</option>
-                        <option value="M">Matutino</option>
-                        <option value="V">Vespertino</option>
+                        <option value="0">Matutino</option>
+                        <option value="1">Vespertino</option>
                 </select>
             </div>
             <div class="three columns">
