@@ -235,9 +235,9 @@ i.fa{
 		 		$.ajax({
 		 		url: "preregister/fullregister",
 		 		type: "post",
-		 		data: $(this).serialize()
+		 		data: $('#register-form').serialize()
 		 		})
-				.done( function( data ){
+				.success( function( data ){
 					swal("Datos Actualizados!","¡Ya puede iniciar sesion!","success")
 					.then((value) => {
 						window.location.replace("<?php echo base_url();?>Login");
