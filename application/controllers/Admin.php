@@ -64,6 +64,17 @@ class Admin extends CI_Controller {
 
 
   }
+  public function see_info_user(){
+    if(!$this->input->post()){
+      echo " ¡Error! ";
+      return;
+    }
+    $data = $this->input->post();
+    $verify = $this->Madmin->get_user($data['boleta']);
+    echo $verify;
+
+
+  }
 
 
 

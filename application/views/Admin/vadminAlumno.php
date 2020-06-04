@@ -310,7 +310,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   $( "body" ).on( "click", ".verinfo", function() {
     boleta = $(this).attr("data-verinfo");
-    alert(boleta);
+    var tr = $(this).closest('tr');
+    var color_tr = tr.css("background-color");
+    tr.css({ 'background-color' : '  #e7e3d2  ' });
+    $.ajax({
+      url: "see_info_user",
+      type: "post",
+      data: {boleta:boleta},
+      success:function(data){
+        var data = JSON.parse(data);
+        var nombre_completo=data[0]['Nombre']+" "+data[0]['AppPaterno']+" "+data[0]['AppMaterno'];
+        swal({ html:true, title:"Información", text:"Nombre: "+nombre_completo+
+              "\n"+"Boleta: "+data[0]['Boleta']+
+              "\n"+"Correo: "+data[0]['Correo']})
+              .then((value) => {
+                tr.css({ 'background-color' : color_tr });
+              });
+
+       }
+
+    });
+
   });
 
 
