@@ -42,7 +42,82 @@ class Madmin extends CI_Model
     $sql = $this->db->query("select Usuario.Nombre, Usuario.AppPaterno,Usuario.AppMaterno,Usuario.Boleta,Usuario.Correo,
     Alumno_Materias.Recurse,Materia.Nombre as Nombre_materia ,Materia.Nivel FROM Usuario JOIN Alumno_Materias ON Usuario.Usuario_ID = Alumno_Materias.Usuario_id
     JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE Usuario.Usuario_ID = '$id_user'")->result();
+    if (empty($sql)){
+      echo 'AJAJAJAJJA';
+      $sql_empty = $this->db->query("select Usuario_ID, Nombre
+      ,AppPaterno, AppMaterno, Boleta, Correo from Usuario where Usuario.Usuario_ID = '$id_user'")->result();
 
+      $fecha ="Fecha de expedición: " . date("d") . " del " . date("m") . " de " . date("Y");
+      $nombre_completo = $sql_empty[0]->Nombre .' '. $sql_empty[0]->AppPaterno .' '. $sql_empty[0]->AppMaterno;
+      $url_img =base_url().'assets/images/img.jpg';
+      $type = pathinfo($url_img, PATHINFO_EXTENSION);
+      $data = file_get_contents($url_img);
+      $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+      $html_content='<style>
+
+      .footer{
+             position: fixed;
+             text-align: center;
+             bottom: 0px;
+             width: 150%;
+         }
+         .outer {
+           display: table;
+           position: absolute;
+           top: 0;
+           left: 100;
+           height: 100%;
+           width: 100%;
+         }
+
+         .middle {
+           display: table-cell;
+           vertical-align: middle;
+         }
+
+         .inner {
+           margin-left: auto;
+           margin-right: auto;
+           width: 400px;
+           /*whatever width you want*/
+         }
+  </style>';
+      $html_content .= '<h1 style="color: #4485b8;"><span style="background-color:
+       #4485b8; color: #ffffff; padding: 0 5px;">SEII ESCOM</span><br /> Sistema de Encuestas.</h1><br />'
+
+       .' <br /><p><strong style="color: #000;">Numero de Boleta: </strong> '.$sql_empty[0]->Boleta.'
+       <br />
+
+       <p><strong style="color: #000;">Nombre: </strong> '.$nombre_completo.'
+       <br />
+
+       <p><strong style="color: #000;">Contacto: </strong> '.$sql_empty[0]->Correo.'
+       <br />
+       <br />
+       <br />
+
+       Lista de Materias preferente a inscribir el siguiente semestre.&nbsp;</p><br /><br />
+       <div class="outer">
+         <div class="middle">
+           <div class="inner">
+             <h1 style="color: red;">Sin registro</h1>
+           </div>
+         </div>
+       </div>
+       '
+       .'<img src="'.$base64.'" alt="..." width="300" style =" position: absolute;
+      right: 0;
+      top: 0;
+      display: block;
+      height: 200px;
+      width: 200px;
+      background: url(TRbanner.gif) no-repeat;
+      text-indent: -999em;
+      text-decoration: none;">';
+
+      return $html_content;
+
+    }
     $fecha ="Fecha de expedición: " . date("d") . " del " . date("m") . " de " . date("Y");
     $nombre_completo = $sql[0]->Nombre .' '. $sql[0]->AppPaterno .' '. $sql[0]->AppMaterno;
     $url_img =base_url().'assets/images/img.jpg';

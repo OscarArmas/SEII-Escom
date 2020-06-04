@@ -205,7 +205,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-trash _iconAction eliminar" data-eliminar=<?php echo $values->Boleta; ?> style="color:red;"></i>&nbsp;
                                 <i class="fa fa-eye _iconAction verinfo" data-verinfo=<?php echo $values->Boleta; ?> style="color:#1cacde;"></i>&nbsp;
                                 <i class="fa fa-edit _iconAction editar" data-editar=<?php echo $values->Boleta; ?> style="color:#35a94a;"></i>&nbsp;
-                                <i class="fa fa-file-pdf-o _iconAction pdf" data-pdf=<?php echo $values->Boleta; ?> style="color:red;"></i>&nbsp;
+                                <i class="fa fa-file-pdf-o _iconAction pdf" data-pdf=<?php echo $values->Usuario_ID; ?> style="color:red;"></i>&nbsp;
                           </td>
 
                         </tr>
@@ -325,8 +325,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
   $( "body" ).on( "click", ".pdf", function() {
-    boleta = $(this).attr("data-pdf");
-    alert(boleta);
+    id_user= $(this).attr("data-pdf");
+    window.location.href = "<?php echo base_url();?>/GenPdf/details/"+id_user;
   });
 
 
