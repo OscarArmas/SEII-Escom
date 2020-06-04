@@ -40,10 +40,9 @@ class Madmin extends CI_Model
   public function get_user_pdf($id_user){
 
     $sql = $this->db->query("select Usuario.Nombre, Usuario.AppPaterno,Usuario.AppMaterno,Usuario.Boleta,Usuario.Correo,
-    Alumno_Materias.Recurse,Materia.Nombre as Nombre_materia ,Materia.Nivel FROM Usuario JOIN Alumno_Materias ON Usuario.Usuario_ID = Alumno_Materias.Usuario_id
+    Alumno_Materias.Recurse,Alumno_Materias.Turno, Materia.Nombre as Nombre_materia ,Materia.Nivel FROM Usuario JOIN Alumno_Materias ON Usuario.Usuario_ID = Alumno_Materias.Usuario_id
     JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE Usuario.Usuario_ID = '$id_user'")->result();
     if (empty($sql)){
-      echo 'AJAJAJAJJA';
       $sql_empty = $this->db->query("select Usuario_ID, Nombre
       ,AppPaterno, AppMaterno, Boleta, Correo from Usuario where Usuario.Usuario_ID = '$id_user'")->result();
 
@@ -173,6 +172,7 @@ th, td {
     $html_content.='<table>
   <tr>
     <th>Materia</th>
+    <th>Turno</th>
     <th>Nivel</th>
     <th>Recurse</th>
   </tr>';
@@ -180,8 +180,10 @@ th, td {
 
   $html_content .= '<tr>
     <td>'.$key->Nombre_materia.'</td>
+    <td>'.$this->TurnoToString($key->Turno).'</td>
     <td>'.$key->Nivel.'</td>
     <td>'.$this->numberToString($key->Recurse).'</td>
+
   </tr>';    // code...
   }
   $html_content.='</table><div class="footer">'.$fecha.'</div>';
@@ -193,6 +195,10 @@ th, td {
   public function numberToString($n)
   {
       return $n == 1 ? 'Si' : 'No';
+  }
+  public function TurnoToString($n)
+  {
+      return $n == 1 ? 'Vespertino' : 'Matutino';
   }
 
 
