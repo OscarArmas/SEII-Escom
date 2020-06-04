@@ -33,9 +33,93 @@ class Madmin extends CI_Model
                   "Correo"=>$data['Correo']);
       $this->db->where('Boleta', $data['boleta']);
       $this->db->update('Usuario', $data_up);
-      return true;
+      return 1;
 
   }
+
+  public function get_user_pdf($id_user){
+
+    $sql = $this->db->query("select Usuario.Nombre, Usuario.AppPaterno,Usuario.AppMaterno,Usuario.Boleta,Usuario.Correo,
+    Alumno_Materias.Recurse,Materia.Nombre as Nombre_materia ,Materia.Nivel FROM Usuario JOIN Alumno_Materias ON Usuario.Usuario_ID = Alumno_Materias.Usuario_id
+    JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE Usuario.Usuario_ID = '$id_user'")->result();
+
+    $fecha ="Fecha de expedición: " . date("d") . " del " . date("m") . " de " . date("Y");
+    $nombre_completo = $sql[0]->Nombre .' '. $sql[0]->AppPaterno .' '. $sql[0]->AppMaterno;
+    $url_img =base_url().'assets/images/img.jpg';
+    $type = pathinfo($url_img, PATHINFO_EXTENSION);
+    $data = file_get_contents($url_img);
+    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+    $html_content='<style>
+
+    .footer{
+           position: fixed;
+           text-align: center;
+           bottom: 0px;
+           width: 150%;
+       }
+table, td, th {
+  border: 3px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+}
+</style>';
+    $html_content .= '<h1 style="color: #4485b8;"><span style="background-color:
+     #4485b8; color: #ffffff; padding: 0 5px;">SEII ESCOM</span><br /> Sistema de Encuestas.</h1><br />'
+
+     .' <br /><p><strong style="color: #000;">Numero de Boleta: </strong> '.$sql[0]->Boleta.'
+     <br />
+
+     <p><strong style="color: #000;">Nombre: </strong> '.$nombre_completo.'
+     <br />
+
+     <p><strong style="color: #000;">Contacto: </strong> '.$sql[0]->Correo.'
+     <br />
+     <br />
+     <br />
+
+     Lista de Materias preferente a inscribir el siguiente semestre.&nbsp;</p><br /><br />'
+     .'<img src="'.$base64.'" alt="..." width="300" style =" position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    height: 200px;
+    width: 200px;
+    background: url(TRbanner.gif) no-repeat;
+    text-indent: -999em;
+    text-decoration: none;">';
+    $html_content.='<table>
+  <tr>
+    <th>Materia</th>
+    <th>Nivel</th>
+    <th>Recurse</th>
+  </tr>';
+  foreach ($sql as $key) {
+
+  $html_content .= '<tr>
+    <td>'.$key->Nombre_materia.'</td>
+    <td>'.$key->Nivel.'</td>
+    <td>'.$this->numberToString($key->Recurse).'</td>
+  </tr>';    // code...
+  }
+  $html_content.='</table><div class="footer">'.$fecha.'</div>';
+
+
+    return $html_content;
+
+  }
+  public function numberToString($n)
+  {
+      return $n == 1 ? 'Si' : 'No';
+  }
+
 
 
 
