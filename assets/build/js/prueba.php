@@ -11,7 +11,7 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT Materia_ID, Nombre, Nivel, Carrera_ID FROM materia";
+$sql = "SELECT Materia_ID, Nombre, Nivel, Carrera_ID FROM Materia";
 $result = mysqli_query($conn, $sql);
 $Materias = array();
 
