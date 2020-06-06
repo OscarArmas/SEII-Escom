@@ -212,6 +212,20 @@ th, td {
 
 
 
+  public function get_materia_pdf($id_materia){
+
+    $sql = $this->db->query("select Materia.Nombre, COUNT(Alumno_Materias.Alumno_Materias_ID) as Inscritos,
+     COUNT(CASE  WHEN Alumno_Materias.Recurse = 1 THEN 1 ELSE NULL END) as Recurses,
+      COUNT(CASE  WHEN Alumno_Materias.Turno = 0 THEN 1 ELSE NULL END) as Matutinos
+       from Alumno_Materias JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE
+        Alumno_Materias.Materia_id ='$id_materia'")->result();
+
+      return $sql;
+
+    }
+
+
+
 
 
 
