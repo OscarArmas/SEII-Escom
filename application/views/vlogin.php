@@ -170,10 +170,10 @@ i.fa{
 							<div class="col-lg-12">
 								<form id="login-form" action="" method="post" role="form" style="display: block;">
 									<div class="form-group">
-										<input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="">
+										<input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
-										<input type="text" name="curp" id="curp" tabindex="2" class="form-control" placeholder="CURP">
+										<input type="text" name="curp" id="curp" tabindex="2" class="form-control" placeholder="CURP" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -241,27 +241,41 @@ i.fa{
 		e.preventDefault();
 	});
 
-	$("#login-form").submit(function(e){
-		e.preventDefault();
-		//return;
- 		$.ajax({
- 		url: "login/checkRegister",
- 		type: "post",
- 		data: $(this).serialize(),
- 		success:function(data){
-			if(data == "null"){
-				swal("Datos no encontrados","Revisa si tu Curp y Boleta son correctos","error");
-			}
-			if (data == "1"){
-				swal("Cuenta Activada","Ya has activado tu cuenta anteriormente.","success");
-			}
-			if(data == "0"){
-				window.location.replace("<?php echo base_url();?>/Preregister");
-			}
 
-    }
- 		});
- 	})
+
+
+	$("#login-form").validetta({
+	  onValid : function( event ) {
+	    event.preventDefault(); // Will prevent the submission of the form
+		 		$.ajax({
+		 		url: "login/checkRegister",
+		 		type: "post",
+		 		data: $("#login-form").serialize()
+		 		})
+				.success( function( datas ){
+					if(datas == "null"){
+						swal("Datos no encontrados","Revisa si tu Curp y Boleta son correctos","error");
+					}
+					if (datas == "1"){
+						swal("Cuenta Activada","Ya has activado tu cuenta anteriormente.","success");
+					}
+					if(datas == "0"){
+						window.location.replace("<?php echo base_url();?>/Preregister");
+					}
+
+            })
+            .fail( function( jqXHR, textStatus ){
+                console.log(textStatus+':'+jqXHR.status+' : '+jqXHR.statusText);
+            })
+            .always( function( result ){ console.log('Request done !!');
+        });
+
+	  }
+
+	});
+
+
+
  	$("#register-form").submit(function(e){
 		e.preventDefault();
  		$.ajax({
@@ -278,7 +292,10 @@ i.fa{
  	});
 
 	</script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- SweetAlert-->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<!-- validetta-->
+	<script type="text/javascript" src="<?=base_url()?>assets/validetta/validetta.js"></script>
 </body>
 </html>
