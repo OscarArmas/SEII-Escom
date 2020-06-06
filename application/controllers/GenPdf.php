@@ -5,6 +5,14 @@ class GenPdf extends CI_Controller {
 
     public function __construct(){
     parent::__construct();
+
+    $this->usuario = $this->session->userdata("user");
+    if(!$this->usuario){
+        redirect('dashboard');
+    }
+    if($this->usuario->nivel!=2){
+        redirect('dashboard');
+    }
     $this->load->model('Madmin');
     }
 
