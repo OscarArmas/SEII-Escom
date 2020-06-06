@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="profile_info">
                 <span>Bienvenido,</span>
                 <h2><?php echo $nombre?></h2>
-                <h2 id="UID"><?php echo $id_usuario?></h2>
+                <h2 id="UID" style="display: none;"><?php echo $id_usuario?></h2>
               </div>
               <div class="clearfix"></div>
             </div>
