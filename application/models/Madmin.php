@@ -17,6 +17,14 @@ class Madmin extends CI_Model
 
   }
 
+  public function get_materias(){
+    $sql = $this->db->query("select Materia.Nombre, Materia.Materia_ID, Materia.Nivel, Carrera.Nombre as Nombre_Carrera FROM Materia JOIN Carrera ON
+Materia.Carrera_ID = Carrera.Carrera_ID")->result();
+
+    return json_encode($sql);
+
+  }
+
   public function get_user($Boleta){
 
     $sql = $this->db->query("select Usuario_ID, Nombre
@@ -196,10 +204,27 @@ th, td {
   {
       return $n == 1 ? 'Si' : 'No';
   }
+
   public function TurnoToString($n)
   {
       return $n == 1 ? 'Vespertino' : 'Matutino';
   }
+
+
+
+  public function get_materia_pdf($id_materia){
+
+    $sql = $this->db->query("select Materia.Nombre, COUNT(Alumno_Materias.Alumno_Materias_ID) as Inscritos,
+     COUNT(CASE  WHEN Alumno_Materias.Recurse = 1 THEN 1 ELSE NULL END) as Recurses,
+      COUNT(CASE  WHEN Alumno_Materias.Turno = 0 THEN 1 ELSE NULL END) as Matutinos
+       from Alumno_Materias JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE
+        Alumno_Materias.Materia_id ='$id_materia'")->result();
+
+      return $sql;
+
+    }
+
+
 
 
 

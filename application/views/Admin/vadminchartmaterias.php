@@ -187,26 +187,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <table id="datatable" class="table table-striped" style="width:100%">
                       <thead>
                         <tr>
-                          <th style="font-size:15px;" >Boleta</th>
-                          <th style="font-size:15px;" >Nombre</th>
-                          <th style="font-size:15px;" >Acciones</th>
+                          <th style="font-size:15px;" >Materia</th>
+                          <th style="font-size:15px;" >Nivel</th>
+                          <th style="font-size:15px;" >Carrera</th>
+                          <th style="font-size:15px;" >Reporte</th>
                         </tr>
                       </thead>
 
 
                       <tbody>
 
-                        <?php foreach($Alumnos as $key=>$values): ?>
-                          <?php $nombre_completo = $values->Nombre .' '. $values->AppPaterno .' '. $values->AppMaterno; ?>
+                        <?php foreach($Materias as $key=>$values): ?>
+
                         <tr>
 
-                          <td style="font-size:15px;"><?php echo $values->Boleta; ?></td>
-                          <td style="font-size:15px;"><?php echo $nombre_completo; ?></td>
+                          <td style="font-size:15px;"><?php echo $values->Nombre; ?></td>
+                          <td style="font-size:15px;"><?php echo $values->Nivel; ?></td>
+                          <td style="font-size:15px;"><?php echo $values->Nombre_Carrera; ?></td>
                           <td>
-                                <i class="fa fa-trash _iconAction eliminar" data-eliminar=<?php echo $values->Boleta; ?> style="color:red;"></i>&nbsp;
-                                <i class="fa fa-eye _iconAction verinfo" data-verinfo=<?php echo $values->Boleta; ?> style="color:#1cacde;"></i>&nbsp;
-                                <i class="fa fa-edit _iconAction editar" data-editar=<?php echo $values->Boleta; ?> style="color:#35a94a;"></i>&nbsp;
-                                <i class="fa fa-file-pdf-o _iconAction pdf" data-pdf=<?php echo $values->Usuario_ID; ?> style="color:red;"></i>&nbsp;
+                                <i class="fa fa-file-pdf-o _iconAction pdf" data-pdf=<?php echo $values->Materia_ID; ?> style="color:red;"></i>&nbsp;
                           </td>
 
                         </tr>
@@ -346,8 +345,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
   $( "body" ).on( "click", ".pdf", function() {
-    id_user= $(this).attr("data-pdf");
-    window.location.href = "<?php echo base_url();?>/GenPdf/details/"+id_user;
+    id_materia= $(this).attr("data-pdf");
+    alert(id_materia);
+    window.location.href = "<?php echo base_url();?>/GenPdfMateria/esho/"+id_materia;
+
   });
 
 
