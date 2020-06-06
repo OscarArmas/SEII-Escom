@@ -186,7 +186,7 @@ i.fa{
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													<a  tabindex="5" class="forgot-password">Olvidaste tu contraseña?</a>
+													<a href="<?php echo base_url();?>login/recovery" tabindex="5" class="forgot-password">Olvidaste tu contraseña?</a>
 												</div>
 											</div>
 										</div>

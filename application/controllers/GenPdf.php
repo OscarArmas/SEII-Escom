@@ -19,7 +19,7 @@ class GenPdf extends CI_Controller {
         $this->load->library('pdf');
         $html_content = $this->Madmin->get_user_pdf($id_user);
         $this->dompdf->loadHtml($html_content);
-          $this->dompdf->setPaper('A4');
+        $this->dompdf->setPaper('A4');
         $this->dompdf->render();
         $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
 

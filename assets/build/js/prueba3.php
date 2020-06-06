@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "2016630398";
+$password = "jackcloudman";
 $dbname = "escuela";
 
 // Create connection
@@ -22,7 +22,7 @@ if (mysqli_num_rows($result) > 0) {
                  $ID =  $row["count(*)"];
   }
   echo $ID;
-} else {       
+} else {
   echo "0 results";
 }
 
