@@ -345,8 +345,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
   $( "body" ).on( "click", ".pdf", function() {
-    id_user= $(this).attr("data-pdf");
-    window.location.href = "<?php echo base_url();?>/GenPdf/details/"+id_user;
+    id_materia= $(this).attr("data-pdf");
+    alert(id_materia);
+    window.location.href = "<?php echo base_url();?>/GenPdfMateria/esho/"+id_materia;
+
   });
 
 
