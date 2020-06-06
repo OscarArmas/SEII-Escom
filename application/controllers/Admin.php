@@ -76,6 +76,14 @@ class Admin extends CI_Controller {
 
   }
 
+  public function materias_view(){
+
+    $lista_json_alumnos = $this->Madmin->get_materias();
+    $data['Materias'] = json_decode($lista_json_alumnos);
+    $this->load->view('Admin/vadminchartmaterias', $data);
+
+  }
+
 
 
 
