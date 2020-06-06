@@ -178,7 +178,7 @@ i.fa{
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Iniciar">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Activar">
 											</div>
 										</div>
 									</div>
@@ -194,10 +194,10 @@ i.fa{
 								</form>
 								<form id="register-form" action="registrar" method="post" role="form" style="display: none;">
 									<div class="form-group">
-										<input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="">
+										<input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
-										<input type="text" name="contraseña" id="contraseña" tabindex="2" class="form-control" placeholder="Contraseña">
+										<input type="password" name="contraseña" id="contraseña" tabindex="2" class="form-control" placeholder="Contraseña" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -276,19 +276,37 @@ i.fa{
 
 
 
- 	$("#register-form").submit(function(e){
-		e.preventDefault();
- 		$.ajax({
- 		url: "login/iniciar",
- 		type: "post",
- 		data: $(this).serialize(),
- 		success:function(data){
 
- 				location.reload();
 
-            }
- 		});
- 	})
+
+
+	$("#register-form").validetta({
+	  onValid : function( event ) {
+	    event.preventDefault(); // Will prevent the submission of the form
+		 		$.ajax({
+		 		url: "login/iniciar",
+		 		type: "post",
+		 		data: $("#register-form").serialize()
+		 		})
+				.success( function( datas ){
+					location.reload();
+
+            })
+            .fail( function( jqXHR, textStatus ){
+                console.log(textStatus+':'+jqXHR.status+' : '+jqXHR.statusText);
+            })
+            .always( function( result ){ console.log('Request done !!');
+        });
+
+	  }
+
+	});
+
+
+
+
+
+
  	});
 
 	</script>
