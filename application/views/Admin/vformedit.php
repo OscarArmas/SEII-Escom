@@ -54,7 +54,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="menu_section">
                 <ul class="nav side-menu">
 
-                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Alumnos <span class="label label-success pull-right"></span></a></li>
+                  <li><a href="<?php echo site_url('Admin/AlumnosView') ?>"><i class="fa fa-laptop"></i> Alumnos <span class="label label-success pull-right"></span></a></li>
+                  <li><a href="<?php echo site_url('Admin/materias_view') ?>"><i class="fa fa-line-chart"></i> Materias <span class="label label-success pull-right"></span></a></li>
                 </ul>
               </div>
 
@@ -243,7 +244,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <div class="ln_solid"></div>
                       <div class="item form-group">
                         <div class="col-md-6 col-sm-6 offset-md-3">
-                          <button class="btn btn-primary" type="button">Cancelar</button>
+                          <button class="btn btn-primary" type="button" onclick="location.href='<?php echo site_url('Admin/AlumnosView') ?>';">Cancelar</button>
                           <button id= "submitbutton" type="submit" class="btn btn-success">Actualizar</button>
                         </div>
                       </div>
