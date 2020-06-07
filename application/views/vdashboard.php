@@ -75,7 +75,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <br />
 
             <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <ul class="nav side-menu">
 
+                  <li><a href="<?php echo site_url('GenPdfMateriaAlumno/details') ?>"><i class="fa fa-file-pdf-o"></i>Comprobante<span class="label label-success pull-right"></span></a></li>
+                  </ul>
+              </div>
+
+            </div>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
