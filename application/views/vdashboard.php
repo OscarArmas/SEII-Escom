@@ -88,7 +88,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Cerrar Sesion" href="login.html" style="width: 100%;">
+              <a data-toggle="tooltip" data-placement="top" title="Cerrar Sesion" href="<?=base_url()?>login/salir" style="width: 100%;">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
