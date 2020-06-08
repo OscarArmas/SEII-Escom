@@ -20,14 +20,14 @@ class GenPdfMateria extends CI_Controller {
       echo 'VISTA NO DISPONIBLE';
     }
 
-    public function details_materia($id_materia){
-      if ($id_user) {
+    public function details_materia_pdf($id_materia){
+      if ($id_materia) {
         $this->load->library('pdf');
         $html_content = $this->Madmin->get_materia_pdf($id_materia);
         $this->dompdf->loadHtml($html_content);
           $this->dompdf->setPaper('A4');
         $this->dompdf->render();
-        $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
+        $this->dompdf->stream("materia.pdf", array("Attachment"=>0));
 
       }
 
@@ -35,11 +35,23 @@ class GenPdfMateria extends CI_Controller {
 
 
     }
-    public function esho($id_materia){
-        $html_content = $this->Madmin->get_materia_pdf($id_materia);
-       print_r($html_content) ;
+    public function info($id_materia){
+      $datos = $this->Madmin->get_materia_info($id_materia);
+      $data['datos']=$datos;
+      $this->load->view('Admin/vuniquemateria', $data);
+        return;
 
 
     }
+
+    public function info_s($id_materia){
+      $datos = $this->Madmin->get_materia_info($id_materia);
+      print_r($datos);
+        return;
+
+
+    }
+
+
 
 }

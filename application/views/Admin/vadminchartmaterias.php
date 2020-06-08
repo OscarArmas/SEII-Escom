@@ -205,7 +205,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <td style="font-size:15px;"><?php echo $values->Nivel; ?></td>
                           <td style="font-size:15px;"><?php echo $values->Nombre_Carrera; ?></td>
                           <td>
-                                <i class="fa fa-file-pdf-o _iconAction pdf" data-pdf=<?php echo $values->Materia_ID; ?> style="color:red;"></i>&nbsp;
+                            <i class="fa fa-bar-chart _iconAction info" data-info=<?php echo $values->Materia_ID; ?> style="color:green;"></i>&nbsp;
+                            <i class="fa fa-file-pdf-o _iconAction pdf" data-pdf=<?php echo $values->Materia_ID; ?> style="color:red;"></i>&nbsp;
+
                           </td>
 
                         </tr>
@@ -334,20 +336,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   });
 
 
-  $( "body" ).on( "click", ".editar", function() {
-    boleta = $(this).attr("data-editar");
-    var boleta = $(this).attr("data-editar");
-    //buscamos el TR mas cercano al click, osea el que hicimos click
-    var tr = $(this).closest('tr');
-    tr.css({ 'background-color' : '  #e7e3d2  ' });
-    window.location.href = "<?php echo base_url();?>/Admin/Edit_info/"+boleta;
+  $( "body" ).on( "click", ".pdf", function() {
+    alert('hola');
+    id_materia= $(this).attr("data-pdf");
+    window.location.href = "<?php echo base_url();?>/GenPdfMateria/details_materia_pdf/"+id_materia;
   });
 
 
-  $( "body" ).on( "click", ".pdf", function() {
-    id_materia= $(this).attr("data-pdf");
-    alert(id_materia);
-    window.location.href = "<?php echo base_url();?>/GenPdfMateria/esho/"+id_materia;
+  $( "body" ).on( "click", ".info", function() {
+    id_materia= $(this).attr("data-info");
+    window.location.href = "<?php echo base_url();?>/GenPdfMateria/info/"+id_materia;
 
   });
 

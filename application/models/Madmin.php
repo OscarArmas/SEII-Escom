@@ -270,15 +270,108 @@ th, td {
 
 
 
-  public function get_materia_pdf($id_materia){
+  public function get_materia_info($id_materia){
 
-    $sql = $this->db->query("select Materia.Nombre, COUNT(Alumno_Materias.Alumno_Materias_ID) as Inscritos,
+    $sql = $this->db->query("select Materia.Nombre, Materia.Nivel, Carrera.Nombre as Carrera, COUNT(Alumno_Materias.Alumno_Materias_ID) as Inscritos,
      COUNT(CASE  WHEN Alumno_Materias.Recurse = 1 THEN 1 ELSE NULL END) as Recurses,
       COUNT(CASE  WHEN Alumno_Materias.Turno = 0 THEN 1 ELSE NULL END) as Matutinos
-       from Alumno_Materias JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE
+       from Alumno_Materias JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID
+       JOIN Carrera ON Materia.Carrera_ID = Carrera.Carrera_ID WHERE
         Alumno_Materias.Materia_id ='$id_materia'")->result();
 
       return $sql;
+
+    }
+
+
+    public function get_materia_pdf($id_materia){
+
+      $sql = $this->db->query("select Materia.Nombre, Materia.Nivel, Carrera.Nombre as Carrera, COUNT(Alumno_Materias.Alumno_Materias_ID) as Inscritos,
+       COUNT(CASE  WHEN Alumno_Materias.Recurse = 1 THEN 1 ELSE NULL END) as Recurses,
+        COUNT(CASE  WHEN Alumno_Materias.Turno = 0 THEN 1 ELSE NULL END) as Matutinos
+         from Alumno_Materias JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID
+         JOIN Carrera ON Materia.Carrera_ID = Carrera.Carrera_ID WHERE
+          Alumno_Materias.Materia_id ='$id_materia'")->result();
+
+
+      $fecha ="Fecha de expedición: " . date("d") . " del " . date("m") . " de " . date("Y");
+      $nombre_completo = $sql[0]->Nombre;
+      $inscritos= $sql[0]->Inscritos;
+      $matutinos = $sql[0]->Matutinos;
+      $vespertinos = $inscritos-$matutinos;
+      $recuerses = $sql[0]->Recurses;
+      $ordinario = $inscritos- $recuerses;
+      $url_img =base_url().'assets/images/img.jpg';
+      $type = pathinfo($url_img, PATHINFO_EXTENSION);
+      $data = file_get_contents($url_img);
+      $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+      $html_content='<style>
+
+      .footer{
+             position: fixed;
+             text-align: center;
+             bottom: 0px;
+             width: 150%;
+         }
+  table, td, th {
+    border: 3px solid #ddd;
+    text-align: left;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    padding: 15px;
+  }
+  </style>';
+      $html_content .= '<h1 style="color: #4485b8;"><span style="background-color:
+       #4485b8; color: #ffffff; padding: 0 5px;">SEII ESCOM</span><br /> Sistema de Encuestas.</h1><br />'
+
+       .' <br /><p><strong style="color: #000;">Materia: </strong> '.$nombre_completo.'
+       <br />
+       <br />
+       <p><strong style="color: #000;">Carrera: </strong> '.$sql[0]->Carrera.'
+       <p><strong style="color: #000;">Inscritos: </strong> '.$inscritos.'
+       <br />
+
+       <p><strong style="color: #000;">Nivel: </strong>'.$sql[0]->Nivel.'
+
+       <br />
+       <br />
+       <br />
+
+       Lista de Materias preferente a inscribir el siguiente semestre.&nbsp;</p><br /><br />'
+       .'<img src="'.$base64.'" alt="..." width="300" style =" position: absolute;
+      right: 0;
+      top: 0;
+      display: block;
+      height: 200px;
+      width: 200px;
+      background: url(TRbanner.gif) no-repeat;
+      text-indent: -999em;
+      text-decoration: none;">';
+      $html_content.='<table>
+    <tr>
+      <th>Matutinos</th>
+      <th>Vespertinos</th>
+      <th>Ordinario</th>
+      <th>Recurses</th>
+    </tr>
+    <td>'.$matutinos.'</td>
+    <td>'.$vespertinos.'</td>
+    <td>'.$ordinario.'</td>
+    <td>'.$recuerses.'</td>
+
+
+    ';
+
+    $html_content.='</table><div class="footer">'.$fecha.'</div>';
+
+
+      return $html_content;
 
     }
 
