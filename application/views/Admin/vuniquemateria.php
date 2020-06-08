@@ -174,7 +174,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <div class="page-title">
               <div class="title_left">
-                <h3>Estad&iacute;sticas de las Preinscripsciones</h3>
+                <h3>Materia:   <?php echo $datos[0]->Nombre; ?></h3>
+
                 <h6 id="date"></h6>
               </div>
             </div>
@@ -182,75 +183,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="clearfix"></div>
             <div class="row">
               <div class="col-md-6 col-sm-6  ">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Alumnos por materia<small>Nivel 1</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <canvas id="alumnospormateriaChart1"></canvas>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-sm-6  ">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Alumnos por materia<small>Nivel 2</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <canvas id="alumnospormateriaChart2"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="row">
-              <div class="col-md-6 col-sm-6  ">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Alumnos por materia<small>Nivel 3</small></h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <canvas id="alumnospormateriaChart3"></canvas>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6 col-sm-6  ">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Alumnos por materia<small>Nivel 4</small></h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <canvas id="alumnospormateriaChart4"></canvas>
-                    </div>
-                  </div>
-                </div>
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="row">
-              <div class="col-md-6 col-sm-6  ">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Alumnos por nivel</h2>
+                      <h2>Tipo de inscripción.</h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                       </ul>
@@ -265,7 +200,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="col-md-6 col-sm-6  ">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Genero de Alumnos en ESCOM</h2>
+                      <h2>Horario</h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                       </ul>
@@ -317,160 +252,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         var paramMaterias = [];
         var paramAlumnos = [];
 
-        function materias1(){
-            $.post("<?php echo base_url();?>Admin/get_nombre_materias/"+1,
-                function(data){
-                    paramMaterias = [];
-                    paramAlumnos = [];
-                    var obj = JSON.parse(data);
-                    var idMaterias = [];
-
-                    $.each(obj,function(i,item){
-                        paramMaterias.push(item.Nombre);
-                        idMaterias.push(item.Materia_ID);
-                    });
-
-                    /*$.post("<?php echo base_url();?>Admin/get_numero_de_alumnos_por_materia/"+idMaterias,
-                            function(dataAlumno){
-
-                                paramAlumnos.push(dataAlumno);
-                    });*/
-
-                    $.each(idMaterias,function(i,id_materia){
-                        $.post("<?php echo base_url();?>Admin/get_numero_de_alumnos_por_materia/"+id_materia,
-                            function(dataAlumno){
-                              var objAlumno = JSON.parse(dataAlumno);
-                              paramAlumnos.push(Object.keys(objAlumno).length);
-
-                        });
-                    });
-
-                    /*for (var i = 0; i < idMaterias.length; i++) {
-                        (function(i){
-
-
-
-                            $.post("<?php echo base_url();?>Admin/get_numero_de_alumnos_por_materia/"+idMaterias[i],
-                            function(dataAlumno){
-                              console.log("i = "+i);
-                              console.log("idMaterias["+i+"] = "+idMaterias[i]);
-                              var objAlumno = JSON.parse(dataAlumno);
-                              paramAlumnos.push(Object.keys(objAlumno).length);
-
-                            });
-                        })(i);
-                    }*/
-
-
-                    /*function pushArrayAlumno(dataAlumno,i){
-                              console.log("i = "+i);
-                              console.log("idMaterias["+i+"] = "+idMaterias[i]);
-                              var objAlumno = JSON.parse(dataAlumno);
-
-                              paramAlumnos.push(Object.keys(objAlumno).length);
-
-                        }
-
-                    function obtenerAlumnos(i){
-                      console.log("Hola "+i);
-                        $.post("<?php echo base_url();?>Admin/get_numero_de_alumnos_por_materia/"+idMaterias[i],
-                            function(dataAlumno){
-                              console.log(dataAlumno);
-                              console.log("Adios "+i);
-                              pushArrayAlumno(dataAlumno,i);
-                        });
-                    }
-
-                    for(var i = 0; i < idMaterias.length; i++){
-                        obtenerAlumnos(i);
-                    }*/
-
-                    var ctx = document.getElementById("alumnospormateriaChart1");
-                    var mybarChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: paramMaterias,
-                            datasets: [{
-                                label: '# de Alumnos',
-                                backgroundColor: "#2499CB",
-                                data: paramAlumnos
-                            }]
-                        },
-
-                        options: {
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }]
-                            }
-                        }
-                        });
-                });
-        };
 
         function materias(int,colorRGBA){
-            $.post("<?php echo base_url();?>Admin/get_nombre_materias/"+int,
-                function(data){
-                    paramMaterias = [];
-                    paramAlumnos = [];
-                    var obj = JSON.parse(data);
-                    var idMaterias = [];
 
-                    $.each(obj,function(i,item){
-                        paramMaterias.push(item.Nombre);
-                        idMaterias.push(item.Materia_ID);
-                    });
-
-                    $.each(idMaterias,function(i,id_materia){
-                        $.post("<?php echo base_url();?>Admin/get_numero_de_alumnos_por_materia/"+id_materia,
-                            function(dataAlumno){
-                              var objAlumno = JSON.parse(dataAlumno);
-                              paramAlumnos.push(Object.keys(objAlumno).length);
-
-                        });
-                    });
-
-                    var ctx = document.getElementById("alumnospormateriaChart"+int);
-                    var mybarChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: paramMaterias,
-                            datasets: [{
-                                label: '# de Alumnos',
-                                backgroundColor: colorRGBA,
-                                data: paramAlumnos
-                            }]
-                        },
-
-                        options: {
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }]
-                            }
-                        }
-                        });
-                });
         };
 
         function alumnosPorNivel(){
-          paramAlumnos = [];
-          for(var i=1; i<=5; i++){
-              $.post("<?php echo base_url();?>Admin/get_alumnos_por_nivel/"+i,
-                    function(data){
-                        var objAlumno = JSON.parse(data);
-                        paramAlumnos.push(Object.keys(objAlumno).length);
-                    });
-          }
 
           var ctx = document.getElementById("alumnospornivelChart");
           var data = {
               datasets: [{
-                  data: paramAlumnos,
+                  data: <?php  echo json_encode([$datos[0]->Inscritos - $datos[0]->Recurses, (int)$datos[0]->Recurses]);?>,
                   backgroundColor: [
                       "rgba(255, 50, 0, 0.75)",
                       "rgba(108, 255, 0, 0.75)",
@@ -480,19 +272,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   ],
               }],
               labels: [
-                  "Nivel 1",
-                  "Nivel 2",
-                  "Nivel 3",
-                  "Nivel 4",
-                  "Nivel 5"
+                  "Ordiario",
+                  "Recurse"
+
               ]
           };
 
           var pieChart = new Chart(ctx, {
               data: data,
-              type: 'pie',
+              type: 'bar',
               options: {
                   legend: false,
+                  scales: {
+           yAxes: [{
+               ticks: {
+                   beginAtZero: true
+               }
+           }]
+       }
               }
           });
         };
@@ -516,15 +313,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           var ctx = document.getElementById("generoAlumnosEscuelaChart");
           var data = {
               datasets: [{
-                  data: paramAlumnos,
+                  data: <?php  echo json_encode([(int)$datos[0]->Matutinos , $datos[0]->Inscritos - $datos[0]->Matutinos]);?>,
                   backgroundColor: [
                       "rgba(0, 185, 255, 0.75)",
                       "rgba(255, 134, 251, 0.75)"
                   ],
               }],
               labels: [
-                  "# de Alumnos (Masculino)",
-                  "# de Alumnas (Femenino)"
+                  "Matutino",
+                  "Vespertino"
               ]
           };
 
