@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?=base_url()?>"  class="site_title"><i class="fa fa-paw"></i> <span>SEII Escom</span></a>
+              <a href="<?=base_url()?>"  class="site_title"><i class="fa fa-user"></i> <span>SEII Escom</span></a>
             </div>
 
             <div class="clearfix"></div>
