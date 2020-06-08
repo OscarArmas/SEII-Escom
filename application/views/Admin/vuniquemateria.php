@@ -255,13 +255,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           var ctx = document.getElementById("alumnospornivelChart");
           var data = {
               datasets: [{
-                  data: <?php  echo json_encode([$datos[0]->Inscritos - $datos[0]->Recurses, (int)$datos[0]->Recurses]);?>,
+                  data: <?php  echo json_encode([$datos[0]->Inscritos,$datos[0]->Inscritos - $datos[0]->Recurses, (int)$datos[0]->Recurses]);?>,
                   backgroundColor: [
                       "rgba(0, 166, 255, 0.75)",
                       "rgba(255, 50, 0, 0.75)"
                   ],
               }],
               labels: [
+                  "Total de Alumnos",
                   "Alumnos en Ordinario",
                   "Alumnos con Recurse"
 
