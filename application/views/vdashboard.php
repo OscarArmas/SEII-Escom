@@ -146,7 +146,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="row">
                 <div class="three columns">
                     <label for="carrera">Carrera</label>
-                    <select class="u-full-width" id="carrera">
+                    <select class="u-full-width form-control" id="carrera">
                         <option value="">Seleccione</option>
                         <option value="1">Sistemas Computacionales</option>
                         <option value="2">Ciencia de datos</option>
@@ -155,7 +155,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div class="three columns">
                     <label for="Nivel">Nivel</label>
-                    <select class="u-full-width" id="nivel">
+                    <select class="u-full-width form-control" id="nivel">
                         <option value="">Seleccione</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -166,13 +166,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             <div class="three columns">
                 <label for="UA">Unidad de aprendizaje</label>
-                <select class="u-full-width" id="ua">
+                <select class="u-full-width form-control" id="ua">
                         <option id="op" value="">Seleccione</option>
                 </select>
             </div>
             <div class="three columns">
                 <label for="Turno">Turno</label>
-                <select class="u-full-width" id="turno">
+                <select class="u-full-width form-control" id="turno">
                         <option value="">Seleccione</option>
                         <option value="0">Matutino</option>
                         <option value="1">Vespertino</option>
@@ -180,7 +180,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <div class="three columns">
                 <label for="Turno">Recurse</label>
-                <select class="u-full-width" id="recurse">
+                <select class="u-full-width form-control" id="recurse">
                         <option value="">Seleccione</option>
                         <option value="1">SI</option>
                         <option value="0">No</option>
@@ -201,7 +201,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
   <br>
 <div id="resumen" class="Hola">
-<ul id="lista"></ul>
+<ul class="list-group" id="lista"></ul>
   </div>
   <div id="contador" >
 <ul id="prueba"></ul>
