@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Admin</span></a>
+              <a href="<?php echo site_url('Admin') ?>"" class="site_title"><i class="fa fa-paw"></i> <span>Admin</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-
+                  <li><a href="<?php echo site_url('Admin') ?>"><i class="fa fa-area-chart"></i> Inicio <span class="label label-success pull-right"></span></a></li>
                   <li><a href="<?php echo site_url('Admin/AlumnosView') ?>"><i class="fa fa-laptop"></i> Alumnos <span class="label label-success pull-right"></span></a></li>
                   <li><a href="<?php echo site_url('Admin/materias_view') ?>"><i class="fa fa-line-chart"></i> Materias <span class="label label-success pull-right"></span></a></li>
                 </ul>
@@ -181,32 +181,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <div class="clearfix"></div>
             <div class="row">
-              <div class="col-md-6 col-sm-6  ">
+              <div class="col-md-12 col-sm-12  " >
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Alumnos por materia<small>Nivel 1</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
+                    <ul class="nav navbar-right panel_toolbox">                      
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
-                    <canvas id="alumnospormateriaChart1"></canvas>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-sm-6  ">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Alumnos por materia<small>Nivel 2</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <canvas id="alumnospormateriaChart2"></canvas>
+                  <div class="x_content" >
+                    <canvas id="alumnospormateriaChart1" style="max-width: 100%;"></canvas>
                   </div>
                 </div>
               </div>
@@ -214,36 +199,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <div class="clearfix"></div>
             <div class="row">
-              <div class="col-md-6 col-sm-6  ">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Alumnos por materia<small>Nivel 3</small></h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <canvas id="alumnospormateriaChart3"></canvas>
-                    </div>
+              <div class="col-md-12 col-sm-12  " >
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Alumnos por materia<small>Nivel 2</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">                      
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content" >
+                    <canvas id="alumnospormateriaChart2" style="max-width: 100%;"></canvas>
                   </div>
                 </div>
-
-                <div class="col-md-6 col-sm-6  ">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Alumnos por materia<small>Nivel 4</small></h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <canvas id="alumnospormateriaChart4"></canvas>
-                    </div>
-                  </div>
-                </div>
+              </div>
             </div>
+
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12  " >
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Alumnos por materia<small>Nivel 3</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">                      
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content" >
+                    <canvas id="alumnospormateriaChart3" style="max-width: 100%;"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12  " >
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Alumnos por materia<small>Nivel 4</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">                      
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content" >
+                    <canvas id="alumnospormateriaChart4" style="max-width: 100%;"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>   
 
             <div class="clearfix"></div>
             <div class="row">
@@ -251,7 +257,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="x_panel">
                     <div class="x_title">
                       <h2>Alumnos por nivel</h2>
-                      <ul class="nav navbar-right panel_toolbox">
+                      <ul class="nav navbar-right panel_toolbox">                      
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                       </ul>
                       <div class="clearfix"></div>
@@ -445,6 +451,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         },
 
                         options: {
+                            legend: {display: false
+                            },
                             scales: {
                                 yAxes: [{
                                     ticks: {
@@ -491,9 +499,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           var pieChart = new Chart(ctx, {
               data: data,
               type: 'pie',
-              options: {
+              /*options: {
                   legend: false,
-              }
+              }*/
           });
         };
 
@@ -502,7 +510,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           $.post("<?php echo base_url();?>Admin/get_genero_alumnos_escuela/"+'M',
                 function(data){
                     var objAlumno = JSON.parse(data);
-                    console.log(objAlumno);
                     paramAlumnos.push(Object.keys(objAlumno).length);
                 });
 
@@ -531,9 +538,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           var pieChart = new Chart(ctx, {
               data: data,
               type: 'pie',
-              options: {
+              /*options: {
                   legend: false
-              }
+              }*/
           });
         }
 

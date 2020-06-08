@@ -249,31 +249,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <script>
         $.ajaxSetup({async: false});
-        var paramMaterias = [];
-        var paramAlumnos = [];
 
-
-        function materias(int,colorRGBA){
-
-        };
-
-        function alumnosPorNivel(){
+        function tipoInscripcion(){
 
           var ctx = document.getElementById("alumnospornivelChart");
           var data = {
               datasets: [{
                   data: <?php  echo json_encode([$datos[0]->Inscritos - $datos[0]->Recurses, (int)$datos[0]->Recurses]);?>,
                   backgroundColor: [
-                      "rgba(255, 50, 0, 0.75)",
-                      "rgba(108, 255, 0, 0.75)",
                       "rgba(0, 166, 255, 0.75)",
-                      "rgba(255, 205, 0, 0.75)",
-                      "rgba(155, 0, 255, 0.75)"
+                      "rgba(255, 50, 0, 0.75)"
                   ],
               }],
               labels: [
-                  "Ordiario",
-                  "Recurse"
+                  "Alumnos en Ordinario",
+                  "Alumnos con Recurse"
 
               ]
           };
@@ -294,12 +284,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           });
         };
 
-        function generoAlumnosEscuela(){
+        function horario(){
           paramAlumnos = [];
           $.post("<?php echo base_url();?>Admin/get_genero_alumnos_escuela/"+'M',
                 function(data){
                     var objAlumno = JSON.parse(data);
-                    console.log(objAlumno);
                     paramAlumnos.push(Object.keys(objAlumno).length);
                 });
 
@@ -313,10 +302,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           var ctx = document.getElementById("generoAlumnosEscuelaChart");
           var data = {
               datasets: [{
-                  data: <?php  echo json_encode([(int)$datos[0]->Matutinos , $datos[0]->Inscritos - $datos[0]->Matutinos]);?>,
+                  data: <?php  echo json_encode([(int)$datos[0]->Matutinos , (int)$datos[0]->Vespertinos]);?>,
                   backgroundColor: [
-                      "rgba(0, 185, 255, 0.75)",
-                      "rgba(255, 134, 251, 0.75)"
+                      "rgba(108, 255, 0, 0.75)",
+                      "rgba(255, 205, 0, 0.75)"
                   ],
               }],
               labels: [
@@ -328,19 +317,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           var pieChart = new Chart(ctx, {
               data: data,
               type: 'pie',
-              options: {
+              /*options: {
                   legend: false
-              }
+              }*/
           });
         }
 
-
-        var coloresRGBA = ["rgba(255, 50, 0, 0.75)","rgba(108, 255, 0, 0.75)","rgba(0, 166, 255, 0.75)","rgba(255, 205, 0, 0.75)"]
-        for(var i=1; i <= 4; i++)
-            materias(i,coloresRGBA[i-1]);
-
-        alumnosPorNivel();
-        generoAlumnosEscuela();
+        tipoInscripcion();
+        horario();
 
     </script>
 
