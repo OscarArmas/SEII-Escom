@@ -45,7 +45,7 @@ class GenPdfMateria extends CI_Controller {
     }
 
     public function info_s($id_materia){
-      $datos = $this->Madmin->get_materia_info($id_materia);
+      $datos = $this->Madmin->get_materia_test($id_materia);
       print_r($datos);
         return;
 
