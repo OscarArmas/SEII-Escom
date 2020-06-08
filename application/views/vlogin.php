@@ -289,7 +289,14 @@ i.fa{
 		 		data: $("#register-form").serialize()
 		 		})
 				.success( function( datas ){
-					location.reload();
+					if (datas == "1"){
+							swal("Error","Revisa si tu boleta y contraseña son correctas", "error");
+					}
+					else{
+						location.reload();
+					}
+
+
 
             })
             .fail( function( jqXHR, textStatus ){

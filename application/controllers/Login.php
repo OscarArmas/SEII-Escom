@@ -25,13 +25,12 @@ class Login extends CI_Controller {
 			return;
 		}
 		$data = $this->input->post();
-    print_r($data);
 		if(isset($data['boleta'])&&isset($data['contraseña'])){
 			$boleta = $data['boleta'];
 			$contraseña = $data['contraseña'];
 			$data = $this->mlogin->ingresar($boleta,$contraseña);
 			if(!$data){
-				echo "CURP o Boleta no encontrados";
+				echo "1";
 				return;
 			}
 
