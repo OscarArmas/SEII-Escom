@@ -282,17 +282,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     var boleta = $(this).attr("data-eliminar");
     //buscamos el TR mas cercano al click, osea el que hicimos click
     var tr = $(this).closest('tr');
+    var color_tr = tr.css("background-color");
     tr.css({ 'background-color' : '  #e7e3d2  ' });
     //Avisar al Admin con SWEETALERT
+
+
+
+
+
+
+
     swal.fire({
       title: "Seguro que quieres eliminar a este usuario?",
       text: "Sera borrado de todo el sistema",
       icon: "warning",
-      buttons: true,
-      dangerMode: true,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar!'
     })
-    .then((willDelete) => {
-      if (willDelete) {
+    .then((result) => {
+      if (result.value) {
         $.ajax({
         url: "Delete_user",
         type: "post",
@@ -303,7 +313,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }
         });
       }else{
-        tr.css({ 'background-color' : 'white' });
+        tr.css({ 'background-color' : color_tr });
       }
     });
 
