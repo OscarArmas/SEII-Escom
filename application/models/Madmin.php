@@ -81,8 +81,8 @@ Materia.Carrera_ID = Carrera.Carrera_ID")->result();
   }
 
   public function get_alumnos_por_nivel($nivel){
-    $sql = $this->db->query("select DISTINCT Usuario_id FROM (select Materia.Nivel,Alumno_materias.Usuario_id,Alumno_Materias.Materia_id FROM Materia JOIN Alumno_Materias ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE Materia.Nivel = '$nivel') as subquery")->result();
-      
+    $sql = $this->db->query("select DISTINCT Usuario_id FROM (select Materia.Nivel,Alumno_Materias.Usuario_id,Alumno_Materias.Materia_id FROM Materia JOIN Alumno_Materias ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE Materia.Nivel = '$nivel') as subquery")->result();
+
     return $sql;
   }
 
@@ -95,11 +95,11 @@ Materia.Carrera_ID = Carrera.Carrera_ID")->result();
     foreach ($array as $value){
       $sql = $this->db->query("select Alumno_Materias.Materia_id,Materia.Nombre as Nombre_materia,
       Materia.Nivel FROM Alumno_Materias JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE Alumno_Materias.Materia_id = '$value'")->result();
-   
+
       $alumnos = array();
       $alumnos[] = count($sql);
    }
-    
+
     return $alumnos;
   }*/
 
