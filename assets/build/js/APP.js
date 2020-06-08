@@ -68,8 +68,7 @@ class Interfaz{
      {
           const avisos = document.getElementById('avisos');
             const mensaje = document.getElementById("error"); 
-            mensaje.innerHTML = `Registro confirmado`;
-          
+            mensaje.innerHTML = `Registro realizado`;         
           
      };
 //agregar valores listado
@@ -80,7 +79,7 @@ class Interfaz{
           const li = document.createElement('li');
           // Insertar la materia
           li.innerHTML = `
-               ${nivel} - ${unidad} - ${turno} - ${recurse} - <a href="#" class="borrar">x</a><br><br>
+               ${nivel} - ${turno} - ${recurse} - <a href="#" class="borrar">x</a><br><br>
           `; 
           // Insertar al HTML
           UAListado.appendChild(li);
@@ -97,26 +96,34 @@ confirmar.addEventListener("click",function(e){
           ui.Mensaje3();
    } else if(Materias.length != 0)
             {
-            Materias.forEach(function(mat) {
-               IDMaterias();
-                const K = mat.unidad;
-                const J = mat.nivel;
-                const R = mat.turno;
-                const V = mat.recurse;
-                ID = ID +1; 
-                Datos.push(ID);               
-                Datos.push(K);
-                Datos.push(usu);
-                Datos.push(J);                
-                Datos.push(V);
-                Datos.push(R);
-                console.log(Datos);
-                    InsertDB(Datos);
-                    Datos=[];
-                });
-                 BorrarLi();
-                ui.Mensaje4();
+               var r = confirm("El registro solo se puede hacer una vez, ¿Estas seguro?");
+               if (r == true) {
+                    Materias.forEach(function(mat) {
+                         IDMaterias();
+                          const K = mat.unidad;
+                          const J = mat.nivel;
+                          const R = mat.turno;
+                          const V = mat.recurse;
+                          ID = ID +1; 
+                          Datos.push(ID);               
+                          Datos.push(K);
+                          Datos.push(usu);
+                          Datos.push(J);                
+                          Datos.push(V);
+                          Datos.push(R);
+                          console.log(Datos);
+                              InsertDB(Datos);
+                              Datos=[];
+                          });
+                           BorrarLi();
+                          ui.Mensaje4();
+                         }
+               } else {
+                 
                }
+               
+              
+           
            
 });
 //LLenar Select
@@ -171,6 +178,28 @@ formulario.addEventListener('click',function(e){
      const Ua = document.getElementById('ua').value;
      const Tur = document .getElementById('turno').value;
      const Rec = document.getElementById("recurse").value;
+     let name ="";
+     let op1="";
+     let op2="";
+     for(let i=0;i<DBmat.length;i++)
+     {
+          if(Ua == DBmat[i][0])
+          {
+               name = DBmat[i][1];
+          }
+     }
+     if(Tur == 0)
+     {
+          op1="Matutino";
+     }else{
+          op1 = "vespertino";
+     }
+     if(Rec == 0)
+     {
+          op2 = "No";
+     }else{
+          op2 ="Si";
+     }
      const ui= new Interfaz();
      if (Nvl === '' || Ua==='' || Tur===''||Rec==='')
      { 
@@ -182,7 +211,7 @@ formulario.addEventListener('click',function(e){
               let resultado = Materias.find(materio => Materia.unidad ===Ua);
               if(resultado === undefined)
               {
-               ui.agregarListado(Nvl,Ua,Tur,Rec);
+               ui.agregarListado(name ,Ua,op1,op2);
                Materia={
                            
                            nivel: Nvl,
