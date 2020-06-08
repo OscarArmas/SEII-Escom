@@ -1956,7 +1956,7 @@ function init_EasyPieChart() {
 };
 
 
-function init_charts() {
+/*function init_charts() {
 
     console.log('run_charts  typeof [' + typeof (Chart) + ']');
 
@@ -2357,7 +2357,7 @@ function init_charts() {
         });
 
     }
-}
+}*/
 
 /* COMPOSE */
 
@@ -5019,7 +5019,7 @@ $(document).ready(function () {
     init_daterangepicker_reservation();
     init_SmartWizard();
     init_EasyPieChart();
-    init_charts();
+    //init_charts();
     init_echarts();
     init_morris_charts();
     init_skycons();

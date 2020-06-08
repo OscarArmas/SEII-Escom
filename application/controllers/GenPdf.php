@@ -5,32 +5,43 @@ class GenPdf extends CI_Controller {
 
     public function __construct(){
     parent::__construct();
+
+    $this->usuario = $this->session->userdata("user");
+    if(!$this->usuario){
+        redirect('dashboard');
+    }
+    if($this->usuario->nivel!=2){
+        redirect('dashboard');
+    }
     $this->load->model('Madmin');
     }
 
     public function index(){
-       $boleta= 777;
-      $data['user_data'] = $this->Madmin->get_user($boleta);
+       $boleta= 1;
+      $data['user_data'] = $this->Madmin->get_user_pdf($boleta);
+      print_r($data);
+    }
 
-      $this->load->view('vuserpdf',$data);
-
-        // Get output html
-        $html = $this->output->get_output();
-
-        // Load pdf library
+    public function details($id_user){
+      if ($id_user) {
         $this->load->library('pdf');
-
-        // Load HTML content
-        $this->dompdf->loadHtml($html);
-
-        // (Optional) Setup the paper size and orientation
-        $this->dompdf->setPaper('A4', 'landscape');
-
-        // Render the HTML as PDF
+        $html_content = $this->Madmin->get_user_pdf($id_user);
+        $this->dompdf->loadHtml($html_content);
+        $this->dompdf->setPaper('A4');
         $this->dompdf->render();
-
-        // Output the generated PDF (1 = download and 0 = preview)
         $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
+
+      }
+
+
+
+
+    }
+    public function esho(){
+      $html_content = $this->Madmin->test_join(1);
+       print_r($html_content) ;
+
+
     }
 
 }

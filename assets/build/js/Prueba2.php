@@ -2,7 +2,7 @@
 $datos  = explode(",",$_GET['datos']);
 $servername = "localhost";
 $username = "root";
-$password = "2016630398";
+$password = "jackcloudman";
 $dbname = "escuela";
 
 // Create connection

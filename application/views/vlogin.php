@@ -170,15 +170,15 @@ i.fa{
 							<div class="col-lg-12">
 								<form id="login-form" action="" method="post" role="form" style="display: block;">
 									<div class="form-group">
-										<input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="">
+										<input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
-										<input type="text" name="curp" id="curp" tabindex="2" class="form-control" placeholder="CURP">
+										<input type="text" name="curp" id="curp" tabindex="2" class="form-control" placeholder="CURP" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Iniciar">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Activar">
 											</div>
 										</div>
 									</div>
@@ -186,7 +186,7 @@ i.fa{
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													<a  tabindex="5" class="forgot-password">Olvidaste tu contraseña?</a>
+													<a href="<?php echo base_url();?>login/recovery" tabindex="5" class="forgot-password">Olvidaste tu contraseña?</a>
 												</div>
 											</div>
 										</div>
@@ -194,10 +194,10 @@ i.fa{
 								</form>
 								<form id="register-form" action="registrar" method="post" role="form" style="display: none;">
 									<div class="form-group">
-										<input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="">
+										<input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
-										<input type="text" name="contraseña" id="contraseña" tabindex="2" class="form-control" placeholder="Contraseña">
+										<input type="password" name="contraseña" id="contraseña" tabindex="2" class="form-control" placeholder="Contraseña" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -210,7 +210,7 @@ i.fa{
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													<a  tabindex="5" class="forgot-password">Olvidaste tu contraseña?</a>
+													<a href="<?php echo base_url();?>login/recovery" tabindex="5" class="forgot-password">Olvidaste tu contraseña?</a>
 												</div>
 											</div>
 										</div>
@@ -241,44 +241,79 @@ i.fa{
 		e.preventDefault();
 	});
 
-	$("#login-form").submit(function(e){
-		e.preventDefault();
-		//return;
- 		$.ajax({
- 		url: "login/checkRegister",
- 		type: "post",
- 		data: $(this).serialize(),
- 		success:function(data){
-			if(data == "null"){
-				swal("Datos no encontrados","Revisa si tu Curp y Boleta son correctos","error");
-			}
-			if (data == "1"){
-				swal("Cuenta Activada","Ya has activado tu cuenta anteriormente.","success");
-			}
-			if(data == "0"){
-				window.location.replace("<?php echo base_url();?>/Preregister");
-			}
 
-    }
- 		});
- 	})
- 	$("#register-form").submit(function(e){
-		e.preventDefault();
- 		$.ajax({
- 		url: "login/iniciar",
- 		type: "post",
- 		data: $(this).serialize(),
- 		success:function(data){
 
- 				location.reload();
 
-            }
- 		});
- 	})
+	$("#login-form").validetta({
+	  onValid : function( event ) {
+	    event.preventDefault(); // Will prevent the submission of the form
+		 		$.ajax({
+		 		url: "login/checkRegister",
+		 		type: "post",
+		 		data: $("#login-form").serialize()
+		 		})
+				.success( function( datas ){
+					if(datas == "null"){
+						swal("Datos no encontrados","Revisa si tu Curp y Boleta son correctos","error");
+					}
+					if (datas == "1"){
+						swal("Cuenta Activada","Ya has activado tu cuenta anteriormente.","success");
+					}
+					if(datas == "0"){
+						window.location.replace("<?php echo base_url();?>/Preregister");
+					}
+
+            })
+            .fail( function( jqXHR, textStatus ){
+                console.log(textStatus+':'+jqXHR.status+' : '+jqXHR.statusText);
+            })
+            .always( function( result ){ console.log('Request done !!');
+        });
+
+	  }
+
+	});
+
+
+
+
+
+
+
+	$("#register-form").validetta({
+	  onValid : function( event ) {
+	    event.preventDefault(); // Will prevent the submission of the form
+		 		$.ajax({
+		 		url: "login/iniciar",
+		 		type: "post",
+		 		data: $("#register-form").serialize()
+		 		})
+				.success( function( datas ){
+					location.reload();
+
+            })
+            .fail( function( jqXHR, textStatus ){
+                console.log(textStatus+':'+jqXHR.status+' : '+jqXHR.statusText);
+            })
+            .always( function( result ){ console.log('Request done !!');
+        });
+
+	  }
+
+	});
+
+
+
+
+
+
  	});
 
 	</script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- SweetAlert-->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<!-- validetta-->
+	<script type="text/javascript" src="<?=base_url()?>assets/validetta/validetta.js"></script>
 </body>
 </html>

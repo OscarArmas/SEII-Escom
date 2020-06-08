@@ -39,12 +39,14 @@ class Mlogin extends CI_Model
     }
 
 
-    public function Fullregister($nombre,$appat,$apmat,$email,$password, $boleta){
+    public function Fullregister($nombre,$appat,$apmat,$email,$password, $boleta,$nacimiento,$genero){
         $data = Array("Nombre"=>$nombre,
                       "AppPaterno"=>$appat,
                       "AppMaterno"=>$apmat,
                       "Correo"=>$email,
-                      "Contraseña	"=>$password);
+                      "Contraseña	"=>$password,
+                    "fecha_nacimiento"=> $nacimiento,
+                  "genero"=>$genero);
           $this->db->where('Boleta', $boleta);
           $this->db->update('Usuario', $data);
           return true;

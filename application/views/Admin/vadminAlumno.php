@@ -54,8 +54,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="menu_section">
                 <ul class="nav side-menu">
 
-                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Alumnos <span class="label label-success pull-right"></span></a></li>
-                </ul>
+                  <li><a href="<?php echo site_url('Admin/AlumnosView') ?>"><i class="fa fa-laptop"></i> Alumnos <span class="label label-success pull-right"></span></a></li>
+                    <li><a href="<?php echo site_url('Admin/materias_view') ?>"><i class="fa fa-line-chart"></i> Materias <span class="label label-success pull-right"></span></a></li>
+                  </ul>
               </div>
 
             </div>
@@ -203,9 +204,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <td style="font-size:15px;"><?php echo $nombre_completo; ?></td>
                           <td>
                                 <i class="fa fa-trash _iconAction eliminar" data-eliminar=<?php echo $values->Boleta; ?> style="color:red;"></i>&nbsp;
-                                <i class="fa fa-eye _iconAction verinfo" data-verinfo=<?php echo $values->Boleta; ?> style="color:#1cacde;"></i>&nbsp;
+                                <i class="fa fa-eye _iconAction verinfo" data-verinfo=<?php echo $values->Usuario_ID; ?> style="color:#1cacde;"></i>&nbsp;
                                 <i class="fa fa-edit _iconAction editar" data-editar=<?php echo $values->Boleta; ?> style="color:#35a94a;"></i>&nbsp;
-                                <i class="fa fa-file-pdf-o _iconAction pdf" data-pdf=<?php echo $values->Boleta; ?> style="color:red;"></i>&nbsp;
+                                <i class="fa fa-file-pdf-o _iconAction pdf" data-pdf=<?php echo $values->Usuario_ID; ?> style="color:red;"></i>&nbsp;
                           </td>
 
                         </tr>
@@ -268,6 +269,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         font-size:30px;
         cursor: pointer;
       }
+      .swal-wide{
+    width:850px !important;
+}
     </style>
 
   <script>
@@ -278,17 +282,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     var boleta = $(this).attr("data-eliminar");
     //buscamos el TR mas cercano al click, osea el que hicimos click
     var tr = $(this).closest('tr');
+    var color_tr = tr.css("background-color");
     tr.css({ 'background-color' : '  #e7e3d2  ' });
     //Avisar al Admin con SWEETALERT
-    swal({
+
+
+
+
+
+
+
+    swal.fire({
       title: "Seguro que quieres eliminar a este usuario?",
       text: "Sera borrado de todo el sistema",
       icon: "warning",
-      buttons: true,
-      dangerMode: true,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar!'
     })
-    .then((willDelete) => {
-      if (willDelete) {
+    .then((result) => {
+      if (result.value) {
         $.ajax({
         url: "Delete_user",
         type: "post",
@@ -299,7 +313,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }
         });
       }else{
-        tr.css({ 'background-color' : 'white' });
+        tr.css({ 'background-color' : color_tr });
       }
     });
 
@@ -310,7 +324,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   $( "body" ).on( "click", ".verinfo", function() {
     boleta = $(this).attr("data-verinfo");
-    alert(boleta);
+    var tr = $(this).closest('tr');
+    var color_tr = tr.css("background-color");
+    tr.css({ 'background-color' : '  #e7e3d2  ' });
+    $.ajax({
+      url: "see_info_user",
+      type: "post",
+      data: {boleta:boleta},
+      success:function(data){
+        var swal_html = data;
+        swal.fire({ html: swal_html, customClass: 'swal-wide'})
+        .then((value) => {
+          tr.css({ 'background-color' : color_tr });
+        });
+
+       }
+
+    });
+
   });
 
 
@@ -325,8 +356,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
   $( "body" ).on( "click", ".pdf", function() {
-    boleta = $(this).attr("data-pdf");
-    alert(boleta);
+    id_user= $(this).attr("data-pdf");
+    window.location.href = "<?php echo base_url();?>/GenPdf/details/"+id_user;
   });
 
 
@@ -343,5 +374,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </script>
   <!-- SweetAlert-->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </body>
 </html>

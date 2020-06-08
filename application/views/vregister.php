@@ -175,24 +175,46 @@ i.fa{
 							<div class="col-lg-12">
 									<form id="register-form" action="" method="post" role="form" style="display: block;">
 									<div class="form-group">
+										  <label for="nombre">Nombre</label>
 										<input type="text" name="nombre" id="nombre" tabindex="1" class="form-control" placeholder="Nombre" value="" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
-                  <div class="form-group">
-                    <input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="" data-validetta="number,required" data-vd-message-required="Campo requerido!">
-                  </div>
 									<div class="form-group">
+										<label for="appat">Primer apellido</label>
 										<input type="text" name="appat" id="appat" tabindex="1" class="form-control" placeholder="Primer apellido" value="" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
+										<label for="apmat">Segundo apellido</label>
 										<input type="text" name="apmat" id="apmat" tabindex="1" class="form-control" placeholder="Segundo apellido" value="" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
+										<label for="boleta">Numero de boleta</label>
+                    <input type="text" name="boleta" id="boleta" tabindex="1" class="form-control" placeholder="Boleta" value="" data-validetta="number,required" data-vd-message-required="Campo requerido!">
+                  </div>
+									<div class="form-group">
+										<label for="correo">Correo electrónico</label>
 										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" data-validetta="email" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
+										<label for="nacimiento">Fecha de nacimiento</label>
+										<input type="date" name="nacimiento" id="nacimiento" tabindex="2" class="form-control" placeholder="dd/mm/yyyy" data-validetta="required" data-vd-message-required="Campo requerido!" >
+									</div>
+									<label for="genero">Genero</label>
+									<div class="form-check">
+									  <input class="form-check-input" type="radio" name="genero" id="masculino" value="M" checked>
+									  <label class="form-check-label" for="masculino">
+									    Masculino
+									  </label>
+									  <input class="form-check-input" type="radio" name="genero" id="femenino" value="F">
+									  <label class="form-check-label" for="femenino">
+									    Femenino
+									  </label>
+									</div>
+									<div class="form-group">
+										<label for="password">Contraseña</label>
 										<input type="password" name="password" id="regpassword" tabindex="2" class="form-control" placeholder="Contraseña" data-validetta="required" data-vd-message-required="Campo requerido!">
 									</div>
 									<div class="form-group">
+										<label for="confirm-password">Confirma contraseña</label>
 										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirmar Contraseña" data-validetta="required" data-vd-message-required="Campo requerido!" >
 									</div>
 									<div class="form-group">
