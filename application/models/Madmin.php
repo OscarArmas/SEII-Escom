@@ -60,6 +60,49 @@ Materia.Carrera_ID = Carrera.Carrera_ID")->result();
 
   }
 
+  /*public function get_nombre_materias(){
+    $this->db->select('Nombre');
+    $this->db->from('Materia');
+    $query = $this->db->get();
+
+    return $query->result();
+  }*/
+
+  public function get_nombre_materias($nivel){
+    $sql = $this->db->query("select Materia.Nombre,Materia.Materia_ID,Materia.Nivel FROM Materia WHERE Materia.Nivel = '$nivel'")->result();
+    return $sql;
+  }
+
+  public function get_numero_de_alumnos_por_materia($id_materia){
+    $sql = $this->db->query("select Alumno_Materias.Materia_id,Materia.Nombre as Nombre_materia,
+    Materia.Nivel FROM Alumno_Materias JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE Alumno_Materias.Materia_id = '$id_materia'")->result();
+
+    return $sql;
+  }
+
+  public function get_alumnos_por_nivel($nivel){
+    $sql = $this->db->query("select DISTINCT Usuario_id FROM (select Materia.Nivel,Alumno_materias.Usuario_id,Alumno_Materias.Materia_id FROM Materia JOIN Alumno_Materias ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE Materia.Nivel = '$nivel') as subquery")->result();
+      
+    return $sql;
+  }
+
+  public function get_genero_alumnos_escuela($sexo){
+    $sql = $this->db->query("SELECT genero FROM Usuario WHERE genero = '$sexo' AND Nivel_permiso = 0")->result();
+    return $sql;
+  }
+
+  /*public function get_numero_de_alumnos_por_materia($array){
+    foreach ($array as $value){
+      $sql = $this->db->query("select Alumno_Materias.Materia_id,Materia.Nombre as Nombre_materia,
+      Materia.Nivel FROM Alumno_Materias JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE Alumno_Materias.Materia_id = '$value'")->result();
+   
+      $alumnos = array();
+      $alumnos[] = count($sql);
+   }
+    
+    return $alumnos;
+  }*/
+
   public function get_user_pdf($id_user){
 
     $sql = $this->db->query("select Usuario.Nombre, Usuario.AppPaterno,Usuario.AppMaterno,Usuario.Boleta,Usuario.Correo,

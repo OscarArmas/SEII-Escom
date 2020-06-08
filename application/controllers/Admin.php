@@ -64,6 +64,38 @@ class Admin extends CI_Controller {
 
 
   }
+
+  /*public function get_nombre_materias(){
+    $result = $this->Madmin->get_nombre_materias();
+    echo json_encode($result);
+  }*/
+
+  public function get_nombre_materias($nivel){
+    $result = $this->Madmin->get_nombre_materias($nivel);
+    echo json_encode($result);
+  }
+
+  public function get_numero_de_alumnos_por_materia($id_materia){
+    $result = $this->Madmin->get_numero_de_alumnos_por_materia($id_materia);
+    echo json_encode($result);
+  }
+
+  public function get_alumnos_por_nivel($nivel){
+    $result = $this->Madmin->get_alumnos_por_nivel($nivel);
+    echo json_encode($result);
+  }
+
+  public function get_genero_alumnos_escuela($sexo){
+    $result = $this->Madmin->get_genero_alumnos_escuela($sexo);
+    echo json_encode($result);
+  }
+
+  /*public function get_numero_de_alumnos_por_materia(){
+    $array=json_decode($_POST['jsondata']);
+    $result = $this->Madmin->get_numero_de_alumnos_por_materia($array);
+    echo $result;
+  }*/
+
   public function see_info_user(){
     if(!$this->input->post()){
       echo " ¡Error! ";
