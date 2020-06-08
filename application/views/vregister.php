@@ -215,7 +215,7 @@ i.fa{
 									</div>
 									<div class="form-group">
 										<label for="confirm-password">Confirma contraseña</label>
-										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirmar Contraseña" data-validetta="required" data-vd-message-required="Campo requerido!" >
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirmar Contraseña" data-validetta="required,equalTo[password]" data-vd-message-required="Campo requerido!" data-vd-message-equalTo="Las contraseñas no coinciden!" >
 									</div>
 									<div class="form-group">
 										<div class="row">
