@@ -71,7 +71,8 @@ class Admin extends CI_Controller {
     }
     $data = $this->input->post();
     $verify = $this->Madmin->get_user($data['boleta']);
-    echo $verify;
+    $html_content = $this->Madmin->get_user_pdf($data['boleta']);
+    echo $html_content;
 
 
   }

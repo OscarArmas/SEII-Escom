@@ -204,7 +204,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <td style="font-size:15px;"><?php echo $nombre_completo; ?></td>
                           <td>
                                 <i class="fa fa-trash _iconAction eliminar" data-eliminar=<?php echo $values->Boleta; ?> style="color:red;"></i>&nbsp;
-                                <i class="fa fa-eye _iconAction verinfo" data-verinfo=<?php echo $values->Boleta; ?> style="color:#1cacde;"></i>&nbsp;
+                                <i class="fa fa-eye _iconAction verinfo" data-verinfo=<?php echo $values->Usuario_ID; ?> style="color:#1cacde;"></i>&nbsp;
                                 <i class="fa fa-edit _iconAction editar" data-editar=<?php echo $values->Boleta; ?> style="color:#35a94a;"></i>&nbsp;
                                 <i class="fa fa-file-pdf-o _iconAction pdf" data-pdf=<?php echo $values->Usuario_ID; ?> style="color:red;"></i>&nbsp;
                           </td>
@@ -269,6 +269,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         font-size:30px;
         cursor: pointer;
       }
+      .swal-wide{
+    width:850px !important;
+}
     </style>
 
   <script>
@@ -281,7 +284,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     var tr = $(this).closest('tr');
     tr.css({ 'background-color' : '  #e7e3d2  ' });
     //Avisar al Admin con SWEETALERT
-    swal({
+    swal.fire({
       title: "Seguro que quieres eliminar a este usuario?",
       text: "Sera borrado de todo el sistema",
       icon: "warning",
@@ -319,14 +322,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       type: "post",
       data: {boleta:boleta},
       success:function(data){
-        var data = JSON.parse(data);
-        var nombre_completo=data[0]['Nombre']+" "+data[0]['AppPaterno']+" "+data[0]['AppMaterno'];
-        swal({ html:true, title:"Información", text:"Nombre: "+nombre_completo+
-              "\n"+"Boleta: "+data[0]['Boleta']+
-              "\n"+"Correo: "+data[0]['Correo']})
-              .then((value) => {
-                tr.css({ 'background-color' : color_tr });
-              });
+        var swal_html = data;
+        swal.fire({ html: swal_html, customClass: 'swal-wide'})
+        .then((value) => {
+          tr.css({ 'background-color' : color_tr });
+        });
 
        }
 
@@ -364,5 +364,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </script>
   <!-- SweetAlert-->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </body>
 </html>
