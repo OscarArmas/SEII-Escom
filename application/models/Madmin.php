@@ -272,7 +272,6 @@ th, td {
 
   public function get_materia_info($id_materia){
 
-<<<<<<< HEAD
     $sql = $this->db->query("select Materia.Nombre, Materia.Nivel, Carrera.Nombre as Carrera, 
       COUNT(Alumno_Materias.Alumno_Materias_ID) as Inscritos, 
       COUNT(CASE WHEN Alumno_Materias.Recurse = 1 THEN 1 ELSE NULL END) as Recurses, 
@@ -280,13 +279,6 @@ th, td {
       COUNT(CASE WHEN Alumno_Materias.Turno = 1 THEN 0 ELSE NULL END) as Vespertinos 
       from Alumno_Materias JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID 
       JOIN Carrera ON Materia.Carrera_ID = Carrera.Carrera_ID WHERE Alumno_Materias.Materia_id ='$id_materia'")->result();
-=======
-    $sql = $this->db->query("select Materia.Nombre, COUNT(Alumno_Materias.Alumno_Materias_ID) as Inscritos,
-     COUNT(CASE  WHEN Alumno_Materias.Recurse = 1 THEN 1 ELSE NULL END) as Recurses,
-      COUNT(CASE  WHEN Alumno_Materias.Turno = 0 THEN 1 ELSE NULL END) as Matutinos
-       from Alumno_Materias JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE
-        Alumno_Materias.Materia_id =$id_materia")->result();
->>>>>>> e6dfe7d789af3028cb909ae7d82c193eb7b91d96
 
       return $sql;
 
