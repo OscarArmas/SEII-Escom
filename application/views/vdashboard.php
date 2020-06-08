@@ -22,11 +22,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Custom Theme Style -->
     <link href="<?=base_url()?>assets/build/css/custom.min.css" rel="stylesheet">
     <style>
-      h4 {
+h4 {
         background-color: white;
         color: darkred;
         padding: 5px 10px;
       }
+a{
+  font-size: 15px;
+}
+label{
+  font-size: 15px;
+}
+li{
+  font-size: 20px;
+}
 .boton {
     background-color: darkgray;
     border-radius: 50%;

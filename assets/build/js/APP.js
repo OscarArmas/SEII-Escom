@@ -295,7 +295,7 @@ function showCustomer(str) {
            {
                 //this.responsetext contiene la informacion
          // document.getElementById("error").innerHTML = `${this.responseText}`;         
-            DBmat = JSON.parse(this.responseText);
+            DBmat =JSON.parse(this.responseText);
            
            console.log(DBmat);         
           }
