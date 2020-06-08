@@ -29,7 +29,7 @@ class GenPdf extends CI_Controller {
         $this->dompdf->loadHtml($html_content);
         $this->dompdf->setPaper('A4');
         $this->dompdf->render();
-        $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
+        $this->dompdf->stream("alumno.pdf", array("Attachment"=>0));
 
       }
 
