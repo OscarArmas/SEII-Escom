@@ -28,7 +28,15 @@ Materia.Carrera_ID = Carrera.Carrera_ID")->result();
   public function get_user($Boleta){
 
     $sql = $this->db->query("select Usuario_ID, Nombre
-    ,AppPaterno, AppMaterno, Boleta, Correo from Usuario where Usuario.Boleta = '$Boleta'")->result();
+    ,AppPaterno, AppMaterno, Boleta, Correo, fecha_nacimiento, genero from Usuario where Usuario.Boleta = '$Boleta'")->result();
+
+    return json_encode($sql);
+
+  }
+  public function get_user_byid($id_user){
+
+    $sql = $this->db->query("select Usuario_ID, Nombre
+    ,AppPaterno, AppMaterno, Boleta, Correo, fecha_nacimiento, genero from Usuario where Usuario.Usuario_ID = '$id_user'")->result();
 
     return json_encode($sql);
 
@@ -38,9 +46,16 @@ Materia.Carrera_ID = Carrera.Carrera_ID")->result();
     $data_up = Array("Nombre"=>$data['Nombre'],
                   "AppPaterno"=>$data['AppPaterno'],
                   "AppMaterno"=>$data['AppMaterno'],
-                  "Correo"=>$data['Correo']);
+                  "Correo"=>$data['Correo'],
+                  "fecha_nacimiento"=>$data['nacimiento']);
       $this->db->where('Boleta', $data['boleta']);
       $this->db->update('Usuario', $data_up);
+      $this->db->trans_complete();
+
+      if ($this->db->trans_status() === FALSE)
+      {
+          return 0;
+      }
       return 1;
 
   }

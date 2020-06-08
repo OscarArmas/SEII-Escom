@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <title>SEII-Escom | </title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!-- Bootstrap -->
     <link href="<?=base_url()?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -19,18 +19,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- NProgress -->
     <link href="<?=base_url()?>assets/bower_components/nprogress/nprogress.css" rel="stylesheet">
 
-
     <!-- Custom Theme Style -->
     <link href="<?=base_url()?>assets/build/css/custom.min.css" rel="stylesheet">
-  </head>
+    <style>
+      h4 {
+        background-color: white;
+        color: darkred;
+        padding: 5px 10px;
+      }
+.boton {
+    background-color: darkgray;
+    border-radius: 50%;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: lightblue;
+    font-weight: bold;
 
+}
+.borrar {
+    background-color: red;
+    border-radius: 50%;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+    </style>
+  </head>
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo site_url('Admin') ?>" class="site_title"><i class="fa fa-paw"></i> <span>Admin</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>SEII Escom</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -41,7 +63,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <img src="<?=base_url()?>assets/images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Administrador</span>
+                <span>Bienvenido,</span>
+                <h2><?php echo $Alumno[0]->Nombre?></h2>
+                <h2 id="UID" style="display: none;"></h2>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -54,9 +78,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="menu_section">
                 <ul class="nav side-menu">
 
-                  <li><a href="<?php echo site_url('Admin/AlumnosView') ?>"><i class="fa fa-laptop"></i> Alumnos <span class="label label-success pull-right"></span></a></li>
-                  <li><a href="<?php echo site_url('Admin/materias_view') ?>"><i class="fa fa-line-chart"></i> Materias <span class="label label-success pull-right"></span></a></li>
-                </ul>
+                  <li><a href="<?php echo site_url('GenPdfMateriaAlumno/details') ?>"><i class="fa fa-file-pdf-o"></i>Comprobante<span class="label label-success pull-right"></span></a></li>
+                  </ul>
               </div>
 
             </div>
@@ -64,16 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Cerrar Sesion" href="<?=base_url()?>login/salir" style="width: 100%;">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -91,77 +105,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img src="<?=base_url()?>assets/images/img.jpg" alt="">Administrador
+                      <img src="<?=base_url()?>assets/images/img.jpg" alt=""><?php echo $Alumno[0]->Nombre?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="javascript:;"> Mi perfil</a>
+                      <a class="dropdown-item"  href="<?=base_url()?>preregister/update_register"> Mi perfil</a>
                       <a class="dropdown-item"  href="<?=base_url()?>login/salir"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </div>
-                  </li>
-
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">6</span>
-                    </a>
-                    <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="<?=base_url()?>assets/images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="<?=base_url()?>assets/images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="<?=base_url()?>assets/images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="<?=base_url()?>assets/images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <div class="text-center">
-                          <a class="dropdown-item">
-                            <strong>See All Alerts</strong>
-                            <i class="fa fa-angle-right"></i>
-                          </a>
-                        </div>
-                      </li>
-                    </ul>
                   </li>
                 </ul>
               </nav>
@@ -170,7 +119,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- /top navigation -->
 
         <!-- page content -->
-
         <div class="right_col" role="main">
           <div class="">
 
@@ -271,6 +219,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
+
               </div>
             </div>
           </div>
@@ -287,7 +236,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- /footer content -->
       </div>
     </div>
-
+<style>src </style>
     <!-- jQuery -->
     <script src="<?=base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -299,33 +248,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Custom Theme Scripts -->
     <script src="<?=base_url()?>assets/build/js/custom.min.js"></script>
+    <script src="<?=base_url()?>assets/build/js/APP.js"></script>
 
-    <!-- Datatables -->
-    <script src="<?=base_url()?>assets/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="<?=base_url()?>assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/jszip/dist/jszip.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="<?=base_url()?>assets/vendors/pdfmake/build/vfs_fonts.js"></script>
+
     <style>
       ._iconAction{
         font-size:30px;
         cursor: pointer;
       }
     </style>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!-- SweetAlert-->
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script type="text/javascript">
   // this is the id of the form
   $("#demo-form2").submit(function(e) {
@@ -336,7 +271,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       $.ajax({
              type: "POST",
-             url: "<?php echo base_url();?>/Admin/update_info",
+             url: "<?php echo base_url();?>/Preregister/update_info_alumno",
              data: form.serialize(), // serializes the form's elements.
              success: function(data)
              {

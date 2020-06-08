@@ -109,7 +109,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <img src="<?=base_url()?>assets/images/img.jpg" alt=""><?php echo $nombre?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="javascript:;"> Mi perfil</a>
+                      <a class="dropdown-item"  href="<?=base_url()?>preregister/update_register"> Mi perfil</a>
                       <a class="dropdown-item"  href="<?=base_url()?>login/salir"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesion</a>
                     </div>
                   </li>
