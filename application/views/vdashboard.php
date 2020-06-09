@@ -174,9 +174,9 @@ li{
                         <tr>
 
                           <td style="font-size:15px;"><?php echo $values->Nombre_materia; ?></td>
-                          <td style="font-size:15px;"><?php echo $values->Turno; ?></td>
+                          <td style="font-size:15px;"><?php echo ($values->Turno)? "Vespertino":"Matutino"; ?></td>
                           <td style="font-size:15px;"><?php echo $values->Nivel; ?></td>
-                          <td style="font-size:15px;"><?php echo $values->Recurse; ?></td>
+                          <td style="font-size:15px;"><?php echo ($values->Recurse)? "SI":"NO"; ?></td>
 
                         </tr>
                         <?php endforeach; ?>
