@@ -17,6 +17,12 @@ class Musuario extends CI_Model{
             return false;
 
     }
+    public function getMaterias($id_user){
+      $data = $this->db->query("select Usuario.Nombre, Usuario.AppPaterno,Usuario.AppMaterno,Usuario.Boleta,Usuario.Correo,
+      Alumno_Materias.Recurse,Alumno_Materias.Turno, Materia.Nombre as Nombre_materia ,Materia.Nivel FROM Usuario JOIN Alumno_Materias ON Usuario.Usuario_ID = Alumno_Materias.Usuario_id
+      JOIN Materia ON Alumno_Materias.Materia_id = Materia.Materia_ID WHERE Usuario.Usuario_ID = '$id_user'")->result();
+      return $data;
+    }
     public function getIdByEmail($correo){
       $this->db->select('Usuario_ID');
       $this->db->from('Usuario');

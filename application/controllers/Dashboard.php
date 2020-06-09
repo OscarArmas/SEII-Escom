@@ -15,6 +15,7 @@ class Dashboard extends CI_Controller
       }
       if($this->usuario->nivel==2)
             redirect('Admin');
+      $this->load->model('Musuario');
 
   }
   public function index()
@@ -23,10 +24,14 @@ class Dashboard extends CI_Controller
     $name_user = $usuario->nombre .' '. $usuario->appat;
     $Datos['nombre']= $name_user;
     $Datos['id_usuario'] = $usuario->id_usuario;
-
-    $this->load->view('vdashboard', $Datos);
-
-
+    $materias = $this->Musuario->getMaterias($usuario->id_usuario);
+    if(empty($materias)){
+          $this->load->view('vdashboardregistro', $Datos);
+    }else{
+        $Datos["Materias"] = $materias;
+        $this->load->view('vdashboard', $Datos);
+    #  print_r($materias);
+    }
   }
 }
 

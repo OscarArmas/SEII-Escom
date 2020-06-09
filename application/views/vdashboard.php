@@ -149,94 +149,51 @@ li{
             </div>
 
             <div class="clearfix"></div>
-            <p class="DVH">DVH </p>
-<div id="form">
-    <form action="#" id="buscador">
-        <div class="row">
-                <div class="three columns">
-                    <label for="carrera">Carrera</label>
-                    <select class="u-full-width form-control" id="carrera">
-                        <option value="">Seleccione</option>
-                        <option value="1">Sistemas Computacionales</option>
-                        <option value="2">Ciencia de datos</option>
-                        <option value="3">Inteligencial rtificial</option>
-                    </select>
-                </div>
-                <div class="three columns">
-                    <label for="Nivel">Nivel</label>
-                    <select class="u-full-width form-control" id="nivel">
-                        <option value="">Seleccione</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-            <div class="three columns">
-                <label for="UA">Unidad de aprendizaje</label>
-                <select class="u-full-width form-control" id="ua">
-                        <option id="op" value="">Seleccione</option>
-                </select>
-            </div>
-            <div class="three columns">
-                <label for="Turno">Turno</label>
-                <select class="u-full-width form-control" id="turno">
-                        <option value="">Seleccione</option>
-                        <option value="0">Matutino</option>
-                        <option value="1">Vespertino</option>
-                </select>
-            </div>
-            <div class="three columns">
-                <label for="Turno">Recurse</label>
-                <select class="u-full-width form-control" id="recurse">
-                        <option value="">Seleccione</option>
-                        <option value="1">SI</option>
-                        <option value="0">No</option>
-                </select>
-            </div>
-            <div class="three columns">
-              <a href="#" class="boton" id="AgregarUA">Agregar</a>
-            </div>
-    </form>
-</div>
-<div id="avisos">
-  <h4  id="error"></h4>
-</div>
-<br>
-
-<div class="three columns">
-              <a href="#" class="boton" id="Confirmar">Confirmar</a>
-            </div>
-  <br>
-<div id="resumen" class="Hola">
-<ul class="list-group" id="lista"></ul>
-  </div>
-  <div id="contador" >
-<ul id="prueba"></ul>
-  </div>
-
-
             <div class="row">
-              <div class="col-md-12 col-sm-12  ">
+              <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
 
+                  <div class="x_content">
+                      <div class="row">
+                          <div class="col-sm-12">
+                            <div class="card-box table-responsive">
+                    <table id="datatable" class="table table-striped" style="width:100%">
+                      <thead>
+                        <tr>
+                          <th style="font-size:15px;" >Materia</th>
+                          <th style="font-size:15px;" >Turno</th>
+                          <th style="font-size:15px;" >Nivel</th>
+                          <th style="font-size:15px;" >Recurse</th>
+                        </tr>
+                      </thead>
+
+
+                      <tbody>
+
+                        <?php foreach($Materias as $key=>$values): ?>
+                        <tr>
+
+                          <td style="font-size:15px;"><?php echo $values->Nombre_materia; ?></td>
+                          <td style="font-size:15px;"><?php echo $values->Turno; ?></td>
+                          <td style="font-size:15px;"><?php echo $values->Nivel; ?></td>
+                          <td style="font-size:15px;"><?php echo $values->Recurse; ?></td>
+
+                        </tr>
+                        <?php endforeach; ?>
+                      </tbody>
+                    </table>
+                  </div>
+                  </div>
               </div>
             </div>
-          </div>
-        </div>
-        <!-- /page content -->
+                </div>
+              </div>
 
-        <!-- footer content
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
+            </div>
+        </div>
       </div>
     </div>
-<style>src </style>
+  </div>
     <!-- jQuery -->
     <script src="<?=base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -249,5 +206,6 @@ li{
     <!-- Custom Theme Scripts -->
     <script src="<?=base_url()?>assets/build/js/custom.min.js"></script>
     <script src="<?=base_url()?>assets/build/js/APP.js"></script>
+
   </body>
 </html>
