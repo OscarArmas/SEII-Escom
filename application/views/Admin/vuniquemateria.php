@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Admin</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-group"></i> <span>Admin</span></a>
             </div>
 
             <div class="clearfix"></div>

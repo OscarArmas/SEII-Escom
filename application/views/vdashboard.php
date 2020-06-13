@@ -74,7 +74,7 @@ li{
               </div>
               <div class="profile_info">
                 <span>Bienvenido,</span>
-                <h2><?php echo $nombre?></h2>
+                <h2><?php echo $info[0]->Nombre.' '.$info[0]->AppPaterno ?></h2>
                 <h2 id="UID" style="display: none;"><?php echo $id_usuario?></h2>
               </div>
               <div class="clearfix"></div>
@@ -115,7 +115,7 @@ li{
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img src="<?=base_url()?>assets/images/img.jpg" alt=""><?php echo $nombre?>
+                      <img src="<?=base_url()?>assets/images/img.jpg" alt=""><?php echo $info[0]->Nombre.' '.$info[0]->AppPaterno ?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="<?=base_url()?>preregister/update_register"> Mi perfil</a>
@@ -133,19 +133,15 @@ li{
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Plain Page</h3>
+                <h3>Materias preferentes para el siguiente semestre.</h3>
+
+              </div>
+              <div class="title_right">
+
+
               </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
+
             </div>
 
             <div class="clearfix"></div>

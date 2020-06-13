@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo site_url('Admin') ?>"" class="site_title"><i class="fa fa-paw"></i> <span>Admin</span></a>
+              <a href="<?php echo site_url('Admin') ?>"" class="site_title"><i class="fa fa-group"></i> <span>Admin</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -111,7 +111,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Alumnos por materia<small>Nivel 1</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">                      
+                    <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
@@ -129,7 +129,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Alumnos por materia<small>Nivel 2</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">                      
+                    <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
@@ -147,7 +147,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Alumnos por materia<small>Nivel 3</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">                      
+                    <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
@@ -165,7 +165,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Alumnos por materia<small>Nivel 4</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">                      
+                    <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                     </ul>
                     <div class="clearfix"></div>
@@ -175,7 +175,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                 </div>
               </div>
-            </div>   
+            </div>
 
             <div class="clearfix"></div>
             <div class="row">
@@ -183,7 +183,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="x_panel">
                     <div class="x_title">
                       <h2>Alumnos por nivel</h2>
-                      <ul class="nav navbar-right panel_toolbox">                      
+                      <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                       </ul>
                       <div class="clearfix"></div>

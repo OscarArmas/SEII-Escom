@@ -11,7 +11,7 @@ let ID= 0 ;
 IDMaterias();
 let nodos =0;
 let valor0 = 0;
-let valor1 = 0;               
+let valor1 = 0;
 let DBmat = { };
 let Materias = [ ];
 let Materia={ };
@@ -25,9 +25,9 @@ class Interfaz{
      Messaje()
      {
           const avisos = document.getElementById('avisos');
-            const mensaje = document.getElementById("error"); 
+            const mensaje = document.getElementById("error");
             mensaje.innerHTML = `Campos vacios `;
-          
+
           setTimeout(function(){
              mensaje.innerHTML='';
           },3000);
@@ -36,9 +36,9 @@ class Interfaz{
      Mensaje1()
      {
           const avisos = document.getElementById('avisos');
-            const mensaje = document.getElementById("error"); 
+            const mensaje = document.getElementById("error");
             mensaje.innerHTML = `No puedes seleccionar dos veces la misma materia `;
-          
+
           setTimeout(function(){
              mensaje.innerHTML='';
           },3000);
@@ -47,9 +47,9 @@ class Interfaz{
      Mensaje2()
      {
           const avisos = document.getElementById('avisos');
-            const mensaje = document.getElementById("error"); 
+            const mensaje = document.getElementById("error");
             mensaje.innerHTML = `No puedes seleccionar mas de 7 materias `;
-          
+
           setTimeout(function(){
              mensaje.innerHTML='';
           },3000);
@@ -57,9 +57,9 @@ class Interfaz{
      Mensaje3()
      {
           const avisos = document.getElementById('avisos');
-            const mensaje = document.getElementById("error"); 
+            const mensaje = document.getElementById("error");
             mensaje.innerHTML = `No has agregado materias`;
-          
+
           setTimeout(function(){
              mensaje.innerHTML='';
           },3000);
@@ -67,9 +67,9 @@ class Interfaz{
      Mensaje4()
      {
           const avisos = document.getElementById('avisos');
-            const mensaje = document.getElementById("error"); 
-            mensaje.innerHTML = `Registro realizado`;         
-          
+            const mensaje = document.getElementById("error");
+            mensaje.innerHTML = `Registro realizado`;
+
      };
 //agregar valores listado
      agregarListado(nivel, unidad, turno,recurse)
@@ -80,11 +80,11 @@ class Interfaz{
           // Insertar la materia
           li.innerHTML = `
                ${nivel} - ${turno} - ${recurse} - <a href="#" class="borrar">x</a><br><br>
-          `; 
+          `;
           // Insertar al HTML
           UAListado.appendChild(li);
      }
-    
+
 }
 //EventListeners}
 //Inser confirmar
@@ -104,32 +104,39 @@ confirmar.addEventListener("click",function(e){
                           const J = mat.nivel;
                           const R = mat.turno;
                           const V = mat.recurse;
-                          ID = ID +1; 
-                          Datos.push(ID);               
+                          ID = ID +1;
+                          Datos.push(ID);
                           Datos.push(K);
                           Datos.push(usu);
-                          Datos.push(J);                
+                          Datos.push(J);
                           Datos.push(V);
                           Datos.push(R);
                           console.log(Datos);
                               InsertDB(Datos);
                               Datos=[];
                           });
+                          window.location.replace('http://52.188.125.244/SEII-Escom');
                            BorrarLi();
                           ui.Mensaje4();
-                         }
-               } else {
-                 
+
+
+
+
+                      } return false;
                }
-               
-              
-           
-           
+
+               else {
+
+               }
+
+
+
+
 });
 //LLenar Select
 nivel.addEventListener("change",function(e){
      e.preventDefault();
-    
+
      valor1 = nivel.value;
 
      if (valor0 !="" && valor1 !="")
@@ -144,11 +151,11 @@ nivel.addEventListener("change",function(e){
                          option.text =DBmat[i][1] ;
                          option.value = DBmat[i][0];
                          // Insertar al HTML
-                         document.getElementById("ua").appendChild(option); 
+                         document.getElementById("ua").appendChild(option);
                      }
-        
+
                    }
-                   nodos = ua.childNodes.length;   
+                   nodos = ua.childNodes.length;
 
 
      }
@@ -202,10 +209,10 @@ formulario.addEventListener('click',function(e){
      }
      const ui= new Interfaz();
      if (Nvl === '' || Ua==='' || Tur===''||Rec==='')
-     { 
+     {
           ui.Messaje();
      }else{
-        
+
         if((Materias.length)<7)
          {
               let resultado = Materias.find(materio => Materia.unidad ===Ua);
@@ -213,7 +220,7 @@ formulario.addEventListener('click',function(e){
               {
                ui.agregarListado(name ,Ua,op1,op2);
                Materia={
-                           
+
                            nivel: Nvl,
                            unidad: Ua,
                            turno: Tur,
@@ -233,11 +240,11 @@ formulario.addEventListener('click',function(e){
 function BorrarOption(){
 
           for(let i =1; i<nodos;i++)
-               {                
+               {
                       ua.lastChild.remove();
 
                }
-               
+
 
 }
 //Borrar li
@@ -245,19 +252,19 @@ function BorrarLi(){
 
      const UAListado = document.getElementById('lista');
      for(let i =1; i<nodos;i++)
-          {                
+          {
                  UAListado.lastChild.remove();
 
           }
-          
+
 
 }
 //Base de datos
 //ID Materas_Alumnos
 function IDMaterias() {
      var xhr;
-    
-     //Crear el objeto 
+
+     //Crear el objeto
      xhr = new XMLHttpRequest();
      //abrir una conexion
      xhr.open("GET", "assets/build/js/prueba3.php?", true);
@@ -282,7 +289,7 @@ function showCustomer(str) {
        document.getElementById("error").innerHTML = "";
        return;
      }
-     //Crear el objeto 
+     //Crear el objeto
      xhr = new XMLHttpRequest();
      //abrir una conexion
      xhr.open("GET", "assets/build/js/prueba.php?q="+str, true);
@@ -294,10 +301,10 @@ function showCustomer(str) {
           if (this.readyState == 4 && this.status == 200)
            {
                 //this.responsetext contiene la informacion
-         // document.getElementById("error").innerHTML = `${this.responseText}`;         
+         // document.getElementById("error").innerHTML = `${this.responseText}`;
             DBmat =JSON.parse(this.responseText);
-           
-           console.log(DBmat);         
+
+           console.log(DBmat);
           }
       }
      //Enciar el request
@@ -306,7 +313,7 @@ function showCustomer(str) {
    //Insert DB
    function InsertDB(Datos) {
      var xhr;
-     //Crear el objeto 
+     //Crear el objeto
      xhr = new XMLHttpRequest();
      //abrir una conexion
      xhr.open("GET", "assets/build/js/Prueba2.php?datos= "+Datos, true);
@@ -327,7 +334,7 @@ function showCustomer(str) {
    //Json
    function PruebaJson() {
      var xhr;
-    //Crear el objeto 
+    //Crear el objeto
      xhr = new XMLHttpRequest();
      //abrir una conexion
      xhr.open("GET", "assets/build/js/texto.json", true);
@@ -339,7 +346,7 @@ function showCustomer(str) {
           if (this.status == 200)
            {
                 //this.responsetext contiene la informacion
-                
+
           const personal = JSON.parse(this.responseText);
           let template= "";
           personal.forEach(function(persona){
@@ -347,7 +354,7 @@ function showCustomer(str) {
                <ul>
                <li>Nombre : ${persona.nombre}</li>
                </ul>
-               `;     
+               `;
           });
           document.getElementById("resumen").innerHTML = template;
           }
@@ -355,4 +362,3 @@ function showCustomer(str) {
      //Enciar el request
      xhr.send();
    }
-   
