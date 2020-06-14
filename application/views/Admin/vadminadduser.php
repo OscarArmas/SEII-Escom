@@ -221,9 +221,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		 		})
 				.success( function( datas ){
                     if(datas == 1){
-                        swal("Usuario agregado");
+                        swal("Agregado","Se agrego con exito.", "success");
                     }else if(datas =='Yaexiste'){
-                        swal("La boleta o Curp ya existen en el sistema");
+                        swal("Error","Usuario ya existente", "error");
                     }
 
 
