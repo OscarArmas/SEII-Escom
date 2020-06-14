@@ -105,10 +105,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <h6 id="date"></h6>
               </div>
+
+
+
             </div>
-            <a href="#" id="downloadPdf">Download Report Page as PDF</a>
 
             <div class="clearfix"></div>
+              <button id="downloadPdf" class="btn btn-secondary btn-sm">Descargar PDF</button>
             <div id ="reportPage" class="row">
               <div class="col-md-6 col-sm-6  ">
                   <div class="x_panel">
@@ -142,7 +145,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 
 
-            <a href="#" id="downloadPdf">Download Report Page as PDF</a>
+            <button class="btn btn-round btn-success" onclick="location.href='<?php echo site_url('Admin/materias_view');?>'" type ="button" >Regresar</button>
+
             <br /><br />
             <div id="reportPage">
               <div id="chartContainer" style="width: 30%;float: left;">
@@ -313,15 +317,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 // create new pdf and add our new canvas as an image
 
                 var name = <?php echo json_encode($datos[0]->Nombre);?>;
+                var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
                 var pdf = new jsPDF('p', 'mm', 'a4');
 
                 pdf.text(name, 100, 10, 'center');
                 pdf.setFillColor(135, 124,45,0);
-                pdf.addImage($(pdfCanvas)[0], 'PNG', 0, 50);
+                pdf.addImage($(pdfCanvas)[0], 'JPEG',10, 78, 190, 120);
+                pdf.text(utc, 180,285, 'center');
 
 
                 // download the pdf
-                pdf.save('filename.pdf');
+                pdf.save('grafica.pdf');
               });
 
 
