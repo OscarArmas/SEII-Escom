@@ -132,110 +132,78 @@ li{
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
+
             <div class="page-title">
               <div class="title_left">
-                <h3>Ingresa las materias que quieres cursar el proximo semestre.</h3>
-                <br>
 
-              </div>
-
-              <div class="title_right">
-                  <span class="badge badge-danger">Atención</span><h6>Solo puedes realizar un registro.</h6>
-
+                <h6 id="date"></h6>
               </div>
             </div>
 
             <div class="clearfix"></div>
-            <p hidden class="DVH">DVH </p>
-<div id="form">
-    <form action="#" id="buscador">
-        <div class="row">
-                <div class="three columns">
-                    <label for="carrera">Carrera</label>
-                    <select class="u-full-width form-control" id="carrera">
-                        <option value="">Seleccione</option>
-                        <option value="1">Sistemas Computacionales</option>
-                        <option value="2">Ciencia de datos</option>
-                        <option value="3">Inteligencial rtificial</option>
-                    </select>
-                </div>
-                <div class="three columns">
-                    <label for="Nivel">Nivel</label>
-                    <select class="u-full-width form-control" id="nivel">
-                        <option value="">Seleccione</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-            <div class="three columns">
-                <label for="UA">Unidad de aprendizaje</label>
-                <select class="u-full-width form-control" id="ua">
-                        <option id="op" value="">Seleccione</option>
-                </select>
-            </div>
-            <div class="three columns">
-                <label for="Turno">Turno</label>
-                <select class="u-full-width form-control" id="turno">
-                        <option value="">Seleccione</option>
-                        <option value="0">Matutino</option>
-                        <option value="1">Vespertino</option>
-                </select>
-            </div>
-            <div class="three columns">
-                <label for="Turno">Recurse</label>
-                <select class="u-full-width form-control" id="recurse">
-                        <option value="">Seleccione</option>
-                        <option value="1">SI</option>
-                        <option value="0">No</option>
-                </select>
-            </div>
-            <div class="three columns">
-              <a href="#" class="boton" id="AgregarUA">Agregar</a>
-            </div>
-    </form>
-</div>
-<div id="avisos">
-  <h4  id="error"></h4>
-</div>
-<br>
-
-<div class="three columns">
-              <a href="#" class="boton" id="Confirmar">Confirmar</a>
-            </div>
-  <br>
-<div id="resumen" class="Hola">
-<ul class="list-group" id="lista"></ul>
-  </div>
-  <div id="contador" >
-<ul id="prueba"></ul>
-  </div>
-
-
             <div class="row">
-              <div class="col-md-12 col-sm-12  ">
+              <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Cambiar contraseña<small>Agrega un alumno al preregistro</small></h2>
 
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form id="changePass" data-parsley-validate class="form-horizontal form-label-left" onsubmit="return false">
+
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nueva Contraseña<span >*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                          <input type="password" id="pass" name="pass"  class="form-control " value="" data-validetta="required" data-vd-message-required="Campo requerido!" >
+                        </div>
+                      </div>
+
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Confirmar contraseña<span>*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                          <input type="password" id="confpass" name="confpass"  class="form-control " value="" data-validetta="required,equalTo[pass]" data-vd-message-required="Campo requerido!" data-vd-message-equalTo="Las contraseñas no coinciden!">
+                        </div>
+                      </div>
+
+
+
+
+
+
+
+
+
+                      <div class="ln_solid"></div>
+                      <div class="item form-group">
+                        <div class="col-md-6 col-sm-6 offset-md-3">
+                          <button class="btn btn-primary" type="button" onclick="location.href='<?php echo site_url('Admin/AlumnosView') ?>';">Cancelar</button>
+                          <button id= "submitbutton" type="submit" class="btn btn-success">Cambiar</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <!-- /page content -->
 
-        <!-- footer content
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+
+
+
+
+
+
           </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-      </div>
+
+        </div>
     </div>
-<style>src </style>
+  </div>
     <!-- jQuery -->
-    <script src="<?=base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <!-- Bootstrap -->
    <script src="<?=base_url()?>assets/bower_components/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->
@@ -246,5 +214,45 @@ li{
     <!-- Custom Theme Scripts -->
     <script src="<?=base_url()?>assets/build/js/custom.min.js"></script>
     <script src="<?=base_url()?>assets/build/js/APP.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>assets/validetta/validetta.js"></script>
+    <!-- SweetAlert-->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+
+
+
+    $("#changePass").validetta({
+	  onValid : function( event ) {
+		  data_post = $("#changePass").serialize()
+	    event.preventDefault(); // Will prevent the submission of the form
+		 		$.ajax({
+		 		url: "<?php echo base_url();?>Preregister/change_pass_user",
+		 		type: "post",
+		 		data: $("#changePass").serialize()
+		 		})
+				.success( function( datas ){
+                    if(datas == 1){
+                        swal("Cambiada","Se ha cambiado correctamente la contraseña.","success")
+                        .then((value) => {
+                          window.location.replace("<?php echo base_url();?>dashboard");
+                        });
+                    }else{
+                        swal("Error","No se puedo hacer el cambio.","error");
+                    }
+
+
+            })
+            .fail( function( jqXHR, textStatus ){
+                console.log(textStatus+':'+jqXHR.status+' : '+jqXHR.statusText);
+            })
+            .always( function( result ){ console.log('Request done !!');
+        });
+
+	  }
+
+	});
+
+
+    </script>
   </body>
 </html>

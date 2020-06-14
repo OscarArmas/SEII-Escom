@@ -96,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
+        <div  class="right_col" role="main">
           <div class="">
 
             <div class="page-title">
@@ -106,9 +106,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <h6 id="date"></h6>
               </div>
             </div>
+            <a href="#" id="downloadPdf">Download Report Page as PDF</a>
 
             <div class="clearfix"></div>
-            <div class="row">
+            <div id ="reportPage" class="row">
               <div class="col-md-6 col-sm-6  ">
                   <div class="x_panel">
                     <div class="x_title">
@@ -141,7 +142,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 
 
+            <a href="#" id="downloadPdf">Download Report Page as PDF</a>
+            <br /><br />
+            <div id="reportPage">
+              <div id="chartContainer" style="width: 30%;float: left;">
+                <canvas id="myChart"></canvas>
+              </div>
 
+              <div style="width: 30%; float: left;">
+                <canvas id="myChart2"></canvas>
+              </div>
+
+              <br /><br /><br />
+
+              <div style="width: 30%; height: 400px; clear: both;">
+                <canvas id="myChart3" style="width: 40%"></canvas>
+              </div>
+            </div>
 
 
 
@@ -173,6 +190,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?=base_url()?>assets/build/js/custom.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+
+
+
+</script src = " https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"> < / script >
 
     <script>
         $.ajaxSetup({async: false});
@@ -250,6 +272,59 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   legend: false
               }*/
           });
+
+
+              $('#downloadPdf').click(function(event) {
+                // get size of report page
+                var reportPageHeight = $('#reportPage').innerHeight();
+                var reportPageWidth = $('#reportPage').innerWidth();
+
+                // create a new canvas object that we will populate with all other canvas objects
+                var pdfCanvas = $('<canvas />').attr({
+                  id: "canvaspdf",
+                  width: reportPageWidth,
+                  height: reportPageHeight
+                });
+
+                // keep track canvas position
+                var pdfctx = $(pdfCanvas)[0].getContext('2d');
+
+                var pdfctxX = 0;
+                var pdfctxY = 0;
+                var buffer = 100;
+
+                // for each chart.js chart
+                $("canvas").each(function(index) {
+                  // get the chart height/width
+                  var canvasHeight = $(this).innerHeight();
+                  var canvasWidth = $(this).innerWidth();
+
+                  // draw the chart into the new canvas
+                  pdfctx.drawImage($(this)[0], pdfctxX, pdfctxY, canvasWidth, canvasHeight);
+                  pdfctxX += canvasWidth + buffer;
+
+                  // our report page is in a grid pattern so replicate that in the new canvas
+                  if (index % 2 === 1) {
+                    pdfctxX = 0;
+                    pdfctxY += canvasHeight + buffer;
+                  }
+                });
+
+                // create new pdf and add our new canvas as an image
+
+                var name = <?php echo json_encode($datos[0]->Nombre);?>;
+                var pdf = new jsPDF('p', 'mm', 'a4');
+
+                pdf.text(name, 100, 10, 'center');
+                pdf.setFillColor(135, 124,45,0);
+                pdf.addImage($(pdfCanvas)[0], 'PNG', 0, 50);
+
+
+                // download the pdf
+                pdf.save('filename.pdf');
+              });
+
+
         }
 
         tipoInscripcion();
@@ -267,5 +342,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       document.getElementById("date").innerHTML = "Ciudad de México a " +dias[n.getDay()]+ " "+n.getDate()+ " de " +meses[n.getMonth()]+
           " del " +n.getFullYear()+ " a las "+horas+":"+minutos+ampm;
     </script>
+    <script>
+
+
+    </script>
+
   </body>
 </html>

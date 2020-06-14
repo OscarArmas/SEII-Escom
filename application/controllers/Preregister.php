@@ -11,6 +11,7 @@ class Preregister extends CI_Controller
     parent::__construct();
     $this->load->model('Mlogin');
     $this->load->model('Madmin');
+    $this->load->model('Musuario');
     $this->usuario = $this->session->userdata("user");
   }
   public function index(){
@@ -84,6 +85,36 @@ public function update_info_alumno(){
 
      return;
 
+
+}
+
+
+
+public function change_password(){
+
+    $usuario = $this->usuario;
+    $name_user = $usuario->nombre .' '. $usuario->appat;
+    $Datos['nombre']= $name_user;
+    $Datos['id_usuario'] = $usuario->id_usuario;
+    $info_user = $this->Madmin->get_user_byid($usuario->id_usuario);
+    $Datos['info'] = json_decode($info_user);
+    $this->load->view('vchangepass', $Datos);
+    return;
+
+
+}
+
+
+public function change_pass_user(){
+    if(!$this->input->post()){
+      echo " ¡Error! ";
+      return;
+    }
+      $usuario = $this->usuario;
+      $data = $this->input->post();
+      $is_change = $this->Musuario->change_pass($usuario->id_usuario,$data['pass']);
+      print_r($is_change);
+      return;
 
 }
 

@@ -66,4 +66,13 @@ class Musuario extends CI_Model{
         return ($this->db->affected_rows() == 1);
     }
 
+
+
+    public function change_pass($id,$new_pass){
+        $data = Array("Contraseña"=>$new_pass);
+          $this->db->where('Usuario_ID', $id);
+          $sql = $this->db->update('Usuario', $data);
+        return $sql;
+    }
+
 }
