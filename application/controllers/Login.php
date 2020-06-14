@@ -70,7 +70,7 @@ class Login extends CI_Controller {
       return ;
     }
     if($data[0]->Correo == NULL){
-      echo "0";
+      echo $boleta;
       return  ;
     }
     echo "1";

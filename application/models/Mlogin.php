@@ -24,7 +24,7 @@ class Mlogin extends CI_Model
     public function isFullRegister($boleta = null){
       if(!$boleta)
           return False;
-      $this->db->select('Correo');
+      $this->db->select('Correo, Boleta');
       $this->db->from('Usuario');
       $this->db->where('Boleta', $boleta);
       return $this->db->get()->result();

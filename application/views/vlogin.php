@@ -246,6 +246,7 @@ i.fa{
 
 	$("#login-form").validetta({
 	  onValid : function( event ) {
+		  data_post = $("#login-form").serialize()
 	    event.preventDefault(); // Will prevent the submission of the form
 		 		$.ajax({
 		 		url: "login/checkRegister",
@@ -256,11 +257,15 @@ i.fa{
 					if(datas == "null"){
 						swal("Datos no encontrados","Revisa si tu Curp y Boleta son correctos","error");
 					}
-					if (datas == "1"){
+					else if (datas == "1"){
 						swal("Cuenta Activada","Ya has activado tu cuenta anteriormente.","success");
 					}
-					if(datas == "0"){
-						window.location.replace("<?php echo base_url();?>/Preregister");
+					else{
+
+
+
+						   $.redirect('<?php echo base_url();?>Preregister/' , {'boleta':datas});
+
 					}
 
             })
@@ -320,6 +325,7 @@ i.fa{
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- SweetAlert-->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src = "https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js"></script>
 	<!-- validetta-->
 	<script type="text/javascript" src="<?=base_url()?>assets/validetta/validetta.js"></script>
 </body>

@@ -14,7 +14,15 @@ class Preregister extends CI_Controller
     $this->usuario = $this->session->userdata("user");
   }
   public function index(){
-    $this->load->view('vregister');
+      if(!$this->input->post()){
+            echo "Hicite algo mal!";
+            return;
+        }
+        $data = $this->input->post();
+        $info['boleta'] = $data;
+        //$info[data]
+    $this->load->view('vregister', $info);
+
 
   }
   public function fullregister(){
