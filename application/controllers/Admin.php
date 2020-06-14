@@ -119,8 +119,23 @@ class Admin extends CI_Controller {
 
 public function add_alumno(){
 
-
 $this->load->view('Admin/vadminadduser');
+}
+
+public function add_new_alumno(){
+    if(!$this->input->post()){
+      echo " ¡Error! ";
+      return;
+    }
+    $data = $this->input->post();
+
+    $is_add= $this->Madmin->nuevo_alumno_pre($data['boleta'], $data['CURP']);
+    echo $is_add;
+    return;
+
+
+
+
 }
 
 

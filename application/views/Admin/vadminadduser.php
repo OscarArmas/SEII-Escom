@@ -107,6 +107,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 
             <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Agregar Alumno<small>Agrega un alumno al preregistro</small></h2>
+
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form id="newuser" data-parsley-validate class="form-horizontal form-label-left" onsubmit="return false">
+
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Boleta <span >*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                          <input type="text" id="boleta" name="boleta"  class="form-control " value="" data-validetta="required" data-vd-message-required="Campo requerido!" >
+                        </div>
+                      </div>
+
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">CURP <span>*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                          <input type="text" id="CURP" name="CURP"  class="form-control " value="" data-validetta="required" data-vd-message-required="Campo requerido!">
+                        </div>
+                      </div>
+
+
+
+
+
+
+
+
+
+                      <div class="ln_solid"></div>
+                      <div class="item form-group">
+                        <div class="col-md-6 col-sm-6 offset-md-3">
+                          <button class="btn btn-primary" type="button" onclick="location.href='<?php echo site_url('Admin/AlumnosView') ?>';">Cancelar</button>
+                          <button id= "submitbutton" type="submit" class="btn btn-success">Agregar</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
 
@@ -131,7 +180,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 
     <!-- jQuery -->
-    <script src="<?=base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <!-- Bootstrap -->
    <script src="<?=base_url()?>assets/bower_components/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->
@@ -143,7 +192,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Custom Theme Scripts -->
     <script src="<?=base_url()?>assets/build/js/custom.js"></script>
 
+    <script type="text/javascript" src="<?=base_url()?>assets/validetta/validetta.js"></script>
 
+    <!-- SweetAlert-->
+    	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
       n =  new Date();
       var dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
@@ -153,6 +205,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       ampm = n.getHours() >= 12 ? 'pm' : 'am';
       document.getElementById("date").innerHTML = "Ciudad de México a " +dias[n.getDay()]+ " "+n.getDate()+ " de " +meses[n.getMonth()]+
           " del " +n.getFullYear()+ " a las "+horas+":"+minutos+ampm;
+    </script>
+
+
+    <script>
+
+    $("#newuser").validetta({
+	  onValid : function( event ) {
+		  data_post = $("#newuser").serialize()
+	    event.preventDefault(); // Will prevent the submission of the form
+		 		$.ajax({
+		 		url: "<?php echo base_url();?>Admin/add_new_alumno",
+		 		type: "post",
+		 		data: $("#newuser").serialize()
+		 		})
+				.success( function( datas ){
+                    if(datas == 1){
+                        swal("Usuario agregado");
+                    }else if(datas =='Yaexiste'){
+                        swal("La boleta o Curp ya existen en el sistema");
+                    }
+
+
+            })
+            .fail( function( jqXHR, textStatus ){
+                console.log(textStatus+':'+jqXHR.status+' : '+jqXHR.statusText);
+            })
+            .always( function( result ){ console.log('Request done !!');
+        });
+
+	  }
+
+	});
+
+
+
+
     </script>
   </body>
 </html>

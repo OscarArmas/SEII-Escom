@@ -387,6 +387,22 @@ th, td {
 
       }
 
+      public function nuevo_alumno_pre($boleta,$curp){
+          $exist = $this->db->query("select * FROM Usuario WHERE  Usuario.Boleta = $boleta")->result();
+          if(empty($exist)){
+              $sql = $this->db->query("insert INTO `Usuario` (`Usuario_ID`, `Nombre`, `AppPaterno`, `AppMaterno`, `Boleta`, `CURP`, `Correo`, `Nivel_permiso`,
+               `Contraseña`, `fecha_nacimiento`, `genero`)
+               VALUES (NULL, '', '', '', $boleta, '$curp', NULL, '0', NULL, NULL, NULL);");
+
+               return $sql;
+          }else{
+              return 'Yaexiste';
+          }
+
+
+
+      }
+
 
 
 
