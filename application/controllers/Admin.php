@@ -117,6 +117,12 @@ class Admin extends CI_Controller {
 
   }
 
+public function add_alumno(){
+
+
+$this->load->view('Admin/vadminadduser');
+}
+
 
 
 

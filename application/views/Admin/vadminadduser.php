@@ -101,44 +101,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <div class="page-title">
               <div class="title_left">
-                <h3>Materia:   <?php echo $datos[0]->Nombre; ?></h3>
 
                 <h6 id="date"></h6>
               </div>
             </div>
 
             <div class="clearfix"></div>
-            <div class="row">
-              <div class="col-md-6 col-sm-6  ">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Tipo de inscripción.</h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <canvas id="alumnospornivelChart"></canvas>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="col-md-6 col-sm-6  ">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Horario</h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <canvas id="generoAlumnosEscuelaChart"></canvas>
-                    </div>
-                  </div>
-                </div>
-            </div>
 
 
 
@@ -174,88 +143,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Custom Theme Scripts -->
     <script src="<?=base_url()?>assets/build/js/custom.js"></script>
 
-    <script>
-        $.ajaxSetup({async: false});
-
-        function tipoInscripcion(){
-
-          var ctx = document.getElementById("alumnospornivelChart");
-          var data = {
-              datasets: [{
-                  data: <?php  echo json_encode([$datos[0]->Inscritos,$datos[0]->Inscritos - $datos[0]->Recurses, (int)$datos[0]->Recurses]);?>,
-                  backgroundColor: [
-                      "rgba(0, 166, 255, 0.75)",
-                      "rgba(255, 50, 0, 0.75)",
-                      "rgba(255, 205, 0, 0.75)"
-                  ],
-              }],
-              labels: [
-                  "Total de Alumnos",
-                  "Alumnos en Ordinario",
-                  "Alumnos con Recurse"
-
-              ]
-          };
-
-          var pieChart = new Chart(ctx, {
-              data: data,
-              type: 'bar',
-              options: {
-                  legend: false,
-                  scales: {
-           yAxes: [{
-               ticks: {
-                   beginAtZero: true
-               }
-           }]
-       }
-              }
-          });
-        };
-
-        function horario(){
-          paramAlumnos = [];
-          $.post("<?php echo base_url();?>Admin/get_genero_alumnos_escuela/"+'M',
-                function(data){
-                    var objAlumno = JSON.parse(data);
-                    paramAlumnos.push(Object.keys(objAlumno).length);
-                });
-
-          $.post("<?php echo base_url();?>Admin/get_genero_alumnos_escuela/"+'F',
-                function(data){
-                    var objAlumno = JSON.parse(data);
-                    paramAlumnos.push(Object.keys(objAlumno).length);
-                });
-
-
-          var ctx = document.getElementById("generoAlumnosEscuelaChart");
-          var data = {
-              datasets: [{
-                  data: <?php  echo json_encode([(int)$datos[0]->Matutinos , (int)$datos[0]->Vespertinos]);?>,
-                  backgroundColor: [
-                      "rgba(108, 255, 0, 0.75)",
-                      "rgba(255, 205, 0, 0.75)"
-                  ],
-              }],
-              labels: [
-                  "Matutino",
-                  "Vespertino"
-              ]
-          };
-
-          var pieChart = new Chart(ctx, {
-              data: data,
-              type: 'pie',
-              /*options: {
-                  legend: false
-              }*/
-          });
-        }
-
-        tipoInscripcion();
-        horario();
-
-    </script>
 
     <script>
       n =  new Date();
